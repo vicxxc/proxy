@@ -138,7 +138,7 @@
                             connection.end(reply);
                             return;
                         }
-                        // addrtype 3是域名 14 ip4 ip6
+                        // addrtype 3是域名 1 ip4 4 ip6
                         if (addrtype === 3) {
                             addrLen = data[4];
                         } else if (addrtype !== 1 && addrtype !== 4) {
@@ -146,21 +146,27 @@
                             connection.destroy();
                             return;
                         }
+                        // addtype
                         addrToSend = data.slice(3, 4).toString("binary");
                         if (addrtype === 1) {
+                            // ip4
                             remoteAddr = utils.inetNtoa(data.slice(4, 8));
+                            // 4位ip+2位port 
                             addrToSend += data.slice(4, 10).toString("binary");
                             remotePort = data.readUInt16BE(8);
                             headerLength = 10;
                         } else if (addrtype === 4) {
                             remoteAddr = inet.inet_ntop(data.slice(4, 20));
+                            // 16位ip+2位port
                             addrToSend += data.slice(4, 22).toString("binary");
                             remotePort = data.readUInt16BE(20);
                             headerLength = 22;
                         } else {
+                            // 获取域名+port 
                             remoteAddr = data.slice(5, 5 + addrLen).toString("binary");
                             addrToSend += data.slice(4, 5 + addrLen + 2).toString("binary");
                             remotePort = data.readUInt16BE(5 + addrLen);
+                            // 4位前面+1位长度+域名+2位port
                             headerLength = 5 + addrLen + 2;
                         }
                         if (cmd === 3) {
@@ -168,6 +174,7 @@
                             return;
                         }
                         buf = new Buffer(10);
+                        // 
                         buf.write("\u0005\u0000\u0000\u0001", 0, 4, "binary");
                         buf.write("\u0000\u0000\u0000\u0000", 4, 4, "binary");
                         buf.writeInt16BE(2222, 8);
