@@ -1,0 +1,5 @@
+target 'httpProxy' do
+	pod 'CocoaAsyncSocket'
+	pod 'JKCategories'
+	pod "NAChloride"
+end
