@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+import socket
+import socks
+SOCKS5_PROXY_HOST = '127.0.0.1' 
+SOCKS5_PROXY_PORT = 9998  # socks 代理本地端口
+default_socket = socket.socket
+socks.set_default_proxy(socks.SOCKS5, SOCKS5_PROXY_HOST, SOCKS5_PROXY_PORT) 
+socket.socket = socks.socksocket
+url = 'http://baidu.com'
+import requests
+html_source = requests.get(url, headers={"User-Agent": "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101"}).text
+print html_source
+if html_source:
+    print 'ok'
+else:
+    print 'fail'
