@@ -174,13 +174,20 @@
                             return;
                         }
                         buf = new Buffer(10);
-                        // 
+                        // ### 服务端接收到请求后，会评估请求中携带的DST.ADDR和DST.PORT(目的地址的是否可达)，然后返回给客户端一条或多条响应，格式为
+                        // +----+-----+-------+------+----------+----------+
+                        // |VER | REP |  RSV  | ATYP | BND.ADDR | BND.PORT |
+                        // +----+-----+-------+------+----------+----------+
+                        // | 1  |  1  | X'00' |  1   | Variable |    2     |
+                        // +----+-----+-------+------+----------+----------+
                         buf.write("\u0005\u0000\u0000\u0001", 0, 4, "binary");
                         buf.write("\u0000\u0000\u0000\u0000", 4, 4, "binary");
                         buf.writeInt16BE(2222, 8);
                         connection.write(buf);
+                        // 回复客户端
                         _ref = getServer(), aServer = _ref[0], aPort = _ref[1];
                         utils.info("connecting " + aServer + ":" + aPort);
+                        // 并连接ssserver
                         remote = net.connect(aPort, aServer, function () {
                             if (remote) {
                                 remote.setNoDelay(true);
@@ -251,10 +258,13 @@
                                 return connection.destroy();
                             }
                         });
+                        // 连接成功之后开始往客户端丢数据
                         addrToSendBuf = new Buffer(addrToSend, "binary");
+                        console.log('首次send数据',addrToSendBuf.toString('hex'));
                         addrToSendBuf = encryptor.encrypt(addrToSendBuf);
                         remote.setNoDelay(false);
                         remote.write(addrToSendBuf);
+                        // 后面可以暂时不管
                         if (data.length > headerLength) {
                             buf = new Buffer(data.length - headerLength);
                             data.copy(buf, 0, headerLength);
