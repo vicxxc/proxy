@@ -13,8 +13,8 @@
 @property (nonatomic, strong) GCDAsyncSocket *listeningSocket;
 @property (nonatomic) dispatch_queue_t listeningQueue;
 @property (nonatomic, strong) NSMutableSet *activeSockets;
-@property (nonatomic) NSUInteger totalBytesWritten;
-@property (nonatomic) NSUInteger totalBytesRead;
+//@property (nonatomic) NSUInteger totalBytesWritten;
+//@property (nonatomic) NSUInteger totalBytesRead;
 @property (nonatomic, strong) NSMutableDictionary *authorizedUsers;
 
 @end
@@ -72,14 +72,15 @@
 
 - (void) socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket {
     NSLog(@"Accepted new socket: %@", newSocket);
-    SOCKSProxySocket *proxySocket = [[SOCKSProxySocket alloc] initWithSocket:newSocket delegate:self];
+//    ShadowSocksProxySocket *proxySocket = [[ShadowSocksProxySocket alloc] initWithSocket:newSocket];
+	SOCKSProxySocket *proxySocket = [[SOCKSProxySocket alloc] initWithSocket:newSocket delegate:self];
     [self.activeSockets addObject:proxySocket];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(socksProxy:clientDidConnect:)]) {
-        dispatch_async(self.callbackQueue, ^{
-            [self.delegate socksProxy:self clientDidConnect:proxySocket];
-        });
-    }
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(socksProxy:clientDidConnect:)]) {
+//        dispatch_async(self.callbackQueue, ^{
+//            [self.delegate socksProxy:self clientDidConnect:proxySocket];
+//        });
+//    }
 }
 
 - (NSUInteger) connectionCount {
@@ -87,8 +88,8 @@
 }
 
 - (void) disconnect {
-    [self.activeSockets enumerateObjectsUsingBlock:^(SOCKSProxySocket *proxySocket, BOOL * _Nonnull stop) {
-        [proxySocket disconnect];
+    [self.activeSockets enumerateObjectsUsingBlock:^(ShadowSocksProxySocket *proxySocket, BOOL * _Nonnull stop) {
+//        [proxySocket disconnect];
     }];
     self.activeSockets = nil;
     [self.listeningSocket disconnect];
@@ -96,26 +97,26 @@
     self.listeningSocket = nil;
 }
 
-- (void) proxySocketDidDisconnect:(SOCKSProxySocket *)proxySocket withError:(NSError *)error {
-    dispatch_async(self.listeningQueue, ^{
-        [self.activeSockets removeObject:proxySocket];
-    });
-    if (self.delegate && [self.delegate respondsToSelector:@selector(socksProxy:clientDidDisconnect:)]) {
-        dispatch_async(self.callbackQueue, ^{
-            [self.delegate socksProxy:self clientDidDisconnect:proxySocket];
-        });
-    }
-}
+//- (void) proxySocketDidDisconnect:(SOCKSProxySocket *)proxySocket withError:(NSError *)error {
+//    dispatch_async(self.listeningQueue, ^{
+//        [self.activeSockets removeObject:proxySocket];
+//    });
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(socksProxy:clientDidDisconnect:)]) {
+//        dispatch_async(self.callbackQueue, ^{
+//            [self.delegate socksProxy:self clientDidDisconnect:proxySocket];
+//        });
+//    }
+//}
 
-- (BOOL) proxySocket:(SOCKSProxySocket*)proxySocket
-checkAuthorizationForUser:(NSString*)username
-            password:(NSString*)password {
-    return [self checkAuthorizationForUser:username password:password];
-}
-
-- (void) resetNetworkStatistics {
-    self.totalBytesWritten = 0;
-    self.totalBytesRead = 0;
-}
+//- (BOOL) proxySocket:(SOCKSProxySocket*)proxySocket
+//checkAuthorizationForUser:(NSString*)username
+//            password:(NSString*)password {
+//    return [self checkAuthorizationForUser:username password:password];
+//}
+//
+//- (void) resetNetworkStatistics {
+//    self.totalBytesWritten = 0;
+//    self.totalBytesRead = 0;
+//}
 
 @end

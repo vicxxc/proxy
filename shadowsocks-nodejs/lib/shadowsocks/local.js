@@ -84,7 +84,7 @@
                 return utils.debug("connections: " + connections);
             };
             connection.on("data", function (data) {
-            	console.log('收到----connection.on("data")',data);
+            	console.log('收到----connection.on("data")',data.toString('hex'));
             	console.log(stage);
                 var aPort, aServer, addrToSendBuf, addrtype, buf, cmd, e, piece, reply, tempBuf, _ref;
                 utils.log(utils.EVERYTHING, "connection on data");
@@ -204,6 +204,7 @@
                             try {
                                 if (encryptor) {
                                     data = encryptor.decrypt(data);
+                                    console.log('解密remote data',data);
                                     if (!connection.write(data)) {
                                         return remote.pause();
                                     }
@@ -260,8 +261,8 @@
                         });
                         // 连接成功之后开始往客户端丢数据
                         addrToSendBuf = new Buffer(addrToSend, "binary");
-                        console.log('首次send数据',addrToSendBuf.toString('hex'));
                         addrToSendBuf = encryptor.encrypt(addrToSendBuf);
+                        console.log('首次加密数据',addrToSendBuf);
                         remote.setNoDelay(false);
                         remote.write(addrToSendBuf);
                         // 后面可以暂时不管
@@ -365,7 +366,6 @@
 
     exports.main = function () {
         var KEY, METHOD, PORT, REMOTE_PORT, SERVER, config, configContent, configFromArgs, configPath, e, k, local_address, s, timeout, v;
-        console.log(utils.version);
         configFromArgs = utils.parseArgs();
         configPath = 'config.json';
         if (configFromArgs.config_file) {

@@ -149,7 +149,8 @@
         this.method = null;
       }
       if (this.method != null) {
-        this.cipher = this.get_cipher(this.key, this.method, 1, crypto.randomBytes(32));
+        // this.cipher = this.get_cipher(this.key, this.method, 1, crypto.randomBytes(32));
+        this.cipher = this.get_cipher(this.key, this.method, 1, new Buffer("3d32955f8615096eee96038ba2dc4b61", 'hex'));
       } else {
         _ref = getTable(this.key), this.encryptTable = _ref[0], this.decryptTable = _ref[1];
       }

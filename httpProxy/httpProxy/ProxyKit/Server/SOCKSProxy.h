@@ -9,21 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <GCDAsyncSocket.h>
 #import "SOCKSProxySocket.h"
+#import "ShadowSocksProxySocket.h"
 
-@class SOCKSProxy;
-
-@protocol SOCKSProxyDelegate <NSObject>
-- (void) socksProxy:(SOCKSProxy*)socksProxy clientDidConnect:(SOCKSProxySocket*)clientSocket;
-- (void) socksProxy:(SOCKSProxy*)socksProxy clientDidDisconnect:(SOCKSProxySocket*)clientSocket;
-@end
+//@class SOCKSProxy;
+//
+//@protocol SOCKSProxyDelegate <NSObject>
+//- (void) socksProxy:(SOCKSProxy*)socksProxy clientDidConnect:(SOCKSProxySocket*)clientSocket;
+//- (void) socksProxy:(SOCKSProxy*)socksProxy clientDidDisconnect:(SOCKSProxySocket*)clientSocket;
+//@end
 
 /**
  *  SOCKS proxy server implementation.
  */
-@interface SOCKSProxy : NSObject <GCDAsyncSocketDelegate, SOCKSProxySocketDelegate>
+@interface SOCKSProxy : NSObject <GCDAsyncSocketDelegate>
 
 @property (nonatomic, readonly) uint16_t listeningPort;
-@property (nonatomic, weak) id<SOCKSProxyDelegate> delegate;
+//@property (nonatomic, weak) id<SOCKSProxyDelegate> delegate;
 @property (nonatomic) dispatch_queue_t callbackQueue;
 @property (nonatomic, readonly) NSUInteger connectionCount;
 
@@ -44,13 +45,13 @@
  *  @see totalBytesWritten
  *  @see totalBytesRead
  */
-- (void) resetNetworkStatistics;
+//- (void) resetNetworkStatistics;
 
 
 - (BOOL) startProxy; // defaults to port 9050
 - (BOOL) startProxyOnPort:(uint16_t)port;
 - (BOOL) startProxyOnPort:(uint16_t)port error:(NSError**)error;
-- (void) disconnect;
+//- (void) disconnect;
 
 
 // SOCKS authorization
