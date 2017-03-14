@@ -75,7 +75,6 @@
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-	NSLog(@"-------didReadData%@-----%lu",data,(unsigned long)data.length);
 	if (tag == SOCKS_OPEN) {
 		/*
 		 The initial greeting from the client is
@@ -193,13 +192,13 @@
 	[self.proxySocket readDataToLength:3 withTimeout:TIMEOUT_CONNECT tag:SOCKS_OPEN];
 }
 
-- (void) socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(proxySocketDidDisconnect:withError:)]) {
-		dispatch_async(self.callbackQueue, ^{
-			[self.delegate proxySocketDidDisconnect:self withError:err];
-		});
-	}
-}
+//- (void) socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
+//	if (self.delegate && [self.delegate respondsToSelector:@selector(proxySocketDidDisconnect:withError:)]) {
+//		dispatch_async(self.callbackQueue, ^{
+//			[self.delegate proxySocketDidDisconnect:self withError:err];
+//		});
+//	}
+//}
 
 - (void) socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
 	// We write out 5 bytes which we expect to be:

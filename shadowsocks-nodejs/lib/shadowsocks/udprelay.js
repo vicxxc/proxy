@@ -72,6 +72,7 @@
     };
 
     LRUCache.prototype.sweep = function() {
+      return;
       var dict, diff, k, keys, swept, v, v0, _i, _len;
       utils.debug("sweeping");
       dict = this.dict;

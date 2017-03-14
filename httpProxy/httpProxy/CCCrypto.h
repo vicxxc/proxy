@@ -11,7 +11,9 @@
 #import <CommonCrypto/CommonDigest.h>
 
 @interface CCCrypto : NSObject
-+ (instancetype)shareInstance;
-- (instancetype)initWithCCOperation:(CCOperation)op CCMode:(CCMode)mode CCAlgorithm:(CCAlgorithm)alg IV:(NSData *)iv Key:(NSData *)key;
-- (NSData *)encryptData:(NSData*)data;
+- (CCCryptorRef)initWithCCOperation:(CCOperation)op CCMode:(CCMode)mode CCAlgorithm:(CCAlgorithm)alg IV:(NSData *)iv Key:(NSData *)key;
+- (NSData *)encryptData:(NSData *)data Cryptor:(CCCryptorRef )cryptor;
+//+ (instancetype)shareInstance;
+//- (instancetype)initWithCCOperation:(CCOperation)op CCMode:(CCMode)mode CCAlgorithm:(CCAlgorithm)alg IV:(NSData *)iv Key:(NSData *)key;
+//- (NSData *)encryptData:(NSData*)data;
 @end

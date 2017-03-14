@@ -101,7 +101,7 @@
 
   exports.ERROR = 4;
 
-  _logging_level = exports.INFO;
+  _logging_level = exports.EVERYTHING;
 
   exports.config = function(level) {
     return _logging_level = level;
@@ -153,27 +153,27 @@
     }
   };
 
-  setInterval(function() {
-    var cwd, e, heapdump;
-    if (_logging_level <= exports.DEBUG) {
-      exports.debug(JSON.stringify(process.memoryUsage(), ' ', 2));
-      if (global.gc) {
-        exports.debug('GC');
-        gc();
-        exports.debug(JSON.stringify(process.memoryUsage(), ' ', 2));
-        cwd = process.cwd();
-        if (_logging_level === exports.DEBUG) {
-          try {
-            heapdump = require('heapdump');
-            process.chdir('/tmp');
-            return process.chdir(cwd);
-          } catch (_error) {
-            e = _error;
-            return exports.debug(e);
-          }
-        }
-      }
-    }
-  }, 1000);
+  // setInterval(function() {
+  //   var cwd, e, heapdump;
+  //   if (_logging_level <= exports.DEBUG) {
+  //     exports.debug(JSON.stringify(process.memoryUsage(), ' ', 2));
+  //     if (global.gc) {
+  //       exports.debug('GC');
+  //       gc();
+  //       exports.debug(JSON.stringify(process.memoryUsage(), ' ', 2));
+  //       cwd = process.cwd();
+  //       if (_logging_level === exports.DEBUG) {
+  //         try {
+  //           heapdump = require('heapdump');
+  //           process.chdir('/tmp');
+  //           return process.chdir(cwd);
+  //         } catch (_error) {
+  //           e = _error;
+  //           return exports.debug(e);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }, 1000);
 
 }).call(this);

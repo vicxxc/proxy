@@ -30,6 +30,13 @@
 	
 	self.proxy = [[SOCKSProxy alloc] init];
 	[self.proxy startProxyOnPort:9997];
+	
+//	self.allConnectedSockets = [NSMutableArray new];
+//	self.serverSocket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+//	self.serverSocket.delegate = self;
+//	NSError *error;
+//	[self.serverSocket acceptOnPort:6543 error:&error];
+//	NSLog(@"error,%@",error);
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
@@ -40,6 +47,7 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+	
 }
 
 - (void)didReceiveMemoryWarning {
