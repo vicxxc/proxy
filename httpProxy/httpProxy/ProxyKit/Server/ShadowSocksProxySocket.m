@@ -28,6 +28,7 @@
 @property (nonatomic, strong) CCCrypto *crypto;
 @property (nonatomic, strong) CCCrypto *decrypto;
 @property (nonatomic, strong) NSData *iv;
+@property (nonatomic, strong) NSData *buffer;
 @end
 
 @implementation ShadowSocksProxySocket
@@ -49,7 +50,7 @@
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-	NSLog(@"----------%@------%@",sock,data);
+	NSLog(@"-------didReadData%@-----%lu",data,(unsigned long)data.length);
 	if (tag == SOCKS_OPEN) {
 		 // 首次收到直接扔回x05x00
 		[sock writeData:[[NSData new] convertHexStrToData:@"0500"] withTimeout:-1 tag:SOCKS_OPEN];
@@ -107,17 +108,12 @@
 		// 开始连接服务端.
 		NSError *error = nil;
 		[self.outgoingSocket connectToHost:@"127.0.0.1" onPort:8388 error:&error];
-		NSData *encodedData = [self.crypto encryptData:addrToSend];
-		
-		NSMutableData *lastSend = [NSMutableData new];
-		[lastSend appendData:self.iv];
-		[lastSend appendData:encodedData];
-		
-		[self.outgoingSocket writeData:lastSend withTimeout:-1 tag:0];
+		self.buffer = addrToSend;
 	}
 	
 	if (tag == SOCKS_INCOMING_READ) {
 		NSData *encodedData = [self.crypto encryptData:data];
+		NSLog(@"加密前data=>%@",data);
 		[self.outgoingSocket writeData:encodedData withTimeout:-1 tag:SOCKS_OUTGOING_WRITE];
 		[self.outgoingSocket readDataWithTimeout:-1 tag:SOCKS_OUTGOING_READ];
 		[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
@@ -133,8 +129,7 @@
 		}else{
 			encData = [self.decrypto encryptData:data];
 		}
-		NSLog(@"收到data=>%@",data);
-		NSLog(@"fasongdata=>%@",encData);
+		NSLog(@"解密后data=>%@",encData);
 		[self.proxySocket writeData:encData withTimeout:-1 tag:SOCKS_INCOMING_WRITE];
 		[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
 		[self.outgoingSocket readDataWithTimeout:-1 tag:SOCKS_OUTGOING_READ];
@@ -142,6 +137,14 @@
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
+	NSData *encodedData = [self.crypto encryptData:self.buffer];
+	
+	NSMutableData *lastSend = [NSMutableData new];
+	[lastSend appendData:self.iv];
+	[lastSend appendData:encodedData];
+	
+	[self.outgoingSocket writeData:lastSend withTimeout:-1 tag:0];
+	
 	[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
 }
 

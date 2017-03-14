@@ -44,7 +44,7 @@
         if (local_address == null) {
             local_address = '127.0.0.1';
         }
-        udpServer = udpRelay.createServer(local_address, port, serverAddr, serverPort, key, method, timeout, true);
+        // udpServer = udpRelay.createServer(local_address, port, serverAddr, serverPort, key, method, timeout, true);
         getServer = function () {
             var aPort, aServer, r;
             aPort = serverPort;
@@ -88,8 +88,10 @@
             	console.log(stage);
                 var aPort, aServer, addrToSendBuf, addrtype, buf, cmd, e, piece, reply, tempBuf, _ref;
                 utils.log(utils.EVERYTHING, "connection on data");
-                if (stage === 5) {
+                if (stage === 5 || stage === 4) {
+                    console.log('stage = 5',data.toString('hex'));
                     data = encryptor.encrypt(data);
+                    console.log('加密',data.toString('hex'));
                     if (!remote.write(data)) {
                         connection.pause();
                     }
@@ -183,6 +185,7 @@
                         buf.write("\u0005\u0000\u0000\u0001", 0, 4, "binary");
                         buf.write("\u0000\u0000\u0000\u0000", 4, 4, "binary");
                         buf.writeInt16BE(2222, 8);
+                        console.log('qqqqqqqqqqqqqqqqqqqqq',buf.toString('hex'));
                         connection.write(buf);
                         // 回复客户端
                         _ref = getServer(), aServer = _ref[0], aPort = _ref[1];
@@ -204,7 +207,7 @@
                             try {
                                 if (encryptor) {
                                     data = encryptor.decrypt(data);
-                                    console.log('解密remote data',data);
+                                    console.log('解密remote data',data.toString('hex'));
                                     if (!connection.write(data)) {
                                         return remote.pause();
                                     }
@@ -222,43 +225,43 @@
                                 }
                             }
                         });
-                        remote.on("end", function () {
-                            utils.debug("remote on end");
-                            if (connection) {
-                                return connection.end();
-                            }
-                        });
-                        remote.on("error", function (e) {
-                            utils.debug("remote on error");
-                            return utils.error("remote " + remoteAddr + ":" + remotePort + " error: " + e);
-                        });
-                        remote.on("close", function (had_error) {
-                            utils.debug("remote on close:" + had_error);
-                            if (had_error) {
-                                if (connection) {
-                                    return connection.destroy();
-                                }
-                            } else {
-                                if (connection) {
-                                    return connection.end();
-                                }
-                            }
-                        });
-                        remote.on("drain", function () {
-                            utils.debug("remote on drain");
-                            if (connection) {
-                                return connection.resume();
-                            }
-                        });
-                        remote.setTimeout(timeout, function () {
-                            utils.debug("remote on timeout");
-                            if (remote) {
-                                remote.destroy();
-                            }
-                            if (connection) {
-                                return connection.destroy();
-                            }
-                        });
+                        // remote.on("end", function () {
+                        //     utils.debug("remote on end");
+                        //     if (connection) {
+                        //         return connection.end();
+                        //     }
+                        // });
+                        // remote.on("error", function (e) {
+                        //     utils.debug("remote on error");
+                        //     return utils.error("remote " + remoteAddr + ":" + remotePort + " error: " + e);
+                        // });
+                        // remote.on("close", function (had_error) {
+                        //     utils.debug("remote on close:" + had_error);
+                        //     if (had_error) {
+                        //         if (connection) {
+                        //             return connection.destroy();
+                        //         }
+                        //     } else {
+                        //         if (connection) {
+                        //             return connection.end();
+                        //         }
+                        //     }
+                        // });
+                        // remote.on("drain", function () {
+                        //     utils.debug("remote on drain");
+                        //     if (connection) {
+                        //         return connection.resume();
+                        //     }
+                        // });
+                        // remote.setTimeout(timeout, function () {
+                        //     utils.debug("remote on timeout");
+                        //     if (remote) {
+                        //         remote.destroy();
+                        //     }
+                        //     if (connection) {
+                        //         return connection.destroy();
+                        //     }
+                        // });
                         // 连接成功之后开始往客户端丢数据
                         addrToSendBuf = new Buffer(addrToSend, "binary");
                         addrToSendBuf = encryptor.encrypt(addrToSendBuf);
@@ -266,12 +269,13 @@
                         remote.setNoDelay(false);
                         remote.write(addrToSendBuf);
                         // 后面可以暂时不管
-                        if (data.length > headerLength) {
-                            buf = new Buffer(data.length - headerLength);
-                            data.copy(buf, 0, headerLength);
-                            piece = encryptor.encrypt(buf);
-                            remote.write(piece);
-                        }
+                        // if (data.length > headerLength) {
+                        //     buf = new Buffer(data.length - headerLength);
+                        //     data.copy(buf, 0, headerLength);
+                        //     piece = encryptor.encrypt(buf);
+                        //     console.log('cccccccccccccccccc')
+                        //     remote.write(piece);
+                        // }
                         stage = 4;
                         return utils.debug("stage = 4");
                     } catch (_error) {
@@ -286,59 +290,60 @@
                         return clean();
                     }
                 } else if (stage === 4) {
-                    if (remote == null) {
-                        if (connection) {
-                            connection.destroy();
-                        }
-                        return;
-                    }
-                    data = encryptor.encrypt(data);
-                    remote.setNoDelay(true);
-                    if (!remote.write(data)) {
-                        return connection.pause();
-                    }
+                    // if (remote == null) {
+                    //     if (connection) {
+                    //         connection.destroy();
+                    //     }
+                    //     return;
+                    // }
+                    // data = encryptor.encrypt(data);
+                    // console.log('stage = 4',data.toString('hex'));
+                    // remote.setNoDelay(true);
+                    // if (!remote.write(data)) {
+                    //     return connection.pause();
+                    // }
                 }
             });
-            connection.on("end", function () {
-                connected = false;
-                utils.debug("connection on end");
-                if (remote) {
-                    return remote.end();
-                }
-            });
-            connection.on("error", function (e) {
-                utils.debug("connection on error");
-                return utils.error("local error: " + e);
-            });
-            connection.on("close", function (had_error) {
-                connected = false;
-                utils.debug("connection on close:" + had_error);
-                if (had_error) {
-                    if (remote) {
-                        remote.destroy();
-                    }
-                } else {
-                    if (remote) {
-                        remote.end();
-                    }
-                }
-                return clean();
-            });
-            connection.on("drain", function () {
-                utils.debug("connection on drain");
-                if (remote && stage === 5) {
-                    return remote.resume();
-                }
-            });
-            return connection.setTimeout(timeout, function () {
-                utils.debug("connection on timeout");
-                if (remote) {
-                    remote.destroy();
-                }
-                if (connection) {
-                    return connection.destroy();
-                }
-            });
+            // connection.on("end", function () {
+            //     connected = false;
+            //     utils.debug("connection on end");
+            //     if (remote) {
+            //         return remote.end();
+            //     }
+            // });
+            // connection.on("error", function (e) {
+            //     utils.debug("connection on error");
+            //     return utils.error("local error: " + e);
+            // });
+            // connection.on("close", function (had_error) {
+            //     connected = false;
+            //     utils.debug("connection on close:" + had_error);
+            //     if (had_error) {
+            //         if (remote) {
+            //             remote.destroy();
+            //         }
+            //     } else {
+            //         if (remote) {
+            //             remote.end();
+            //         }
+            //     }
+            //     return clean();
+            // });
+            // connection.on("drain", function () {
+            //     utils.debug("connection on drain");
+            //     if (remote && stage === 5) {
+            //         return remote.resume();
+            //     }
+            // });
+            // return connection.setTimeout(timeout, function () {
+            //     utils.debug("connection on timeout");
+            //     if (remote) {
+            //         remote.destroy();
+            //     }
+            //     if (connection) {
+            //         return connection.destroy();
+            //     }
+            // });
         });
         if (local_address != null) {
             server.listen(port, local_address, function () {

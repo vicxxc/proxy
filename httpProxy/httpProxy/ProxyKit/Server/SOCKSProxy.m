@@ -72,8 +72,8 @@
 
 - (void) socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket {
     NSLog(@"Accepted new socket: %@", newSocket);
-//    ShadowSocksProxySocket *proxySocket = [[ShadowSocksProxySocket alloc] initWithSocket:newSocket];
-	SOCKSProxySocket *proxySocket = [[SOCKSProxySocket alloc] initWithSocket:newSocket delegate:self];
+    ShadowSocksProxySocket *proxySocket = [[ShadowSocksProxySocket alloc] initWithSocket:newSocket];
+//	SOCKSProxySocket *proxySocket = [[SOCKSProxySocket alloc] initWithSocket:newSocket delegate:self];
     [self.activeSockets addObject:proxySocket];
     
 //    if (self.delegate && [self.delegate respondsToSelector:@selector(socksProxy:clientDidConnect:)]) {

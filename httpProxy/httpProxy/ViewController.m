@@ -29,7 +29,7 @@
 	[super viewDidLoad];
 	
 	self.proxy = [[SOCKSProxy alloc] init];
-	[self.proxy startProxyOnPort:9998];
+	[self.proxy startProxyOnPort:9997];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
