@@ -18,16 +18,26 @@
 // Timeouts
 #define TIMEOUT_CONNECT		    -1
 
+//AES-128-CFB
+//AES-192-CFB
+//AES-256-CFB
+//chacha20
+//salsa20
+//rc4-md5
+
 #import "ShadowSocksProxySocket.h"
-#import "NSData+AES256.h"
-#import "CCCrypto.h"
+//#import "NSData+AES256.h"
+#import "NSData+Encryptor.h"
+//#import "CCCrypto.h"
+#import "Encryptor.h"
 
 @interface ShadowSocksProxySocket() <GCDAsyncSocketDelegate>
 @property (nonatomic, strong) GCDAsyncSocket *proxySocket;
 @property (nonatomic, strong) GCDAsyncSocket *outgoingSocket;
-@property (nonatomic) CCCryptorRef crypto;
-@property (nonatomic) CCCryptorRef decrypto;
+//@property (nonatomic) CCCryptorRef crypto;
+//@property (nonatomic) CCCryptorRef decrypto;
 @property (nonatomic, strong) NSData *iv;
+@property (nonatomic, strong) Encryptor *encryptor;
 @property (nonatomic, strong) NSData *buffer;
 @end
 
@@ -41,16 +51,19 @@
 		self.proxySocket.delegateQueue = delegateQueue;
 		self.outgoingSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:delegateQueue];
 		self.proxySocket.delegate = self;
-		NSData *key = [[NSData new] generateKey:[@"barfoo!" dataUsingEncoding:NSUTF8StringEncoding] keyLen:32 IVLen:16];
-		self.iv = [[NSData new] convertHexStrToData:@"3d32955f8615096eee96038ba2dc4b61"];
-		self.crypto = [[CCCrypto new] initWithCCOperation:kCCEncrypt CCMode:kCCModeCFB CCAlgorithm:kCCAlgorithmAES IV:self.iv Key:key];
+//		NSData *key = [[NSData new] generateKey:[@"barfoo!" dataUsingEncoding:NSUTF8StringEncoding] keyLen:32 IVLen:16];
+//		self.iv = [[NSData new] convertHexStrToData:@"3d32955f8615096eee96038ba2dc4b61"];
+//		self.crypto = [[CCCrypto new] initWithCCOperation:kCCEncrypt CCMode:kCCModeCFB CCAlgorithm:kCCAlgorithmAES IV:self.iv Key:key];
+//		Encryptor *encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"aes-256-cfb"];
+//		self.crypto = encryptor.cipher;
+		self.encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"aes-256-cfb"];
 		[self.proxySocket readDataWithTimeout:TIMEOUT_CONNECT tag:SOCKS_OPEN];
 	}
 	return self;
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-	NSLog(@"-------didReadData%@-----%lu",data,(unsigned long)data.length);
+//	NSLog(@"-------didReadData%@-----%lu",data,(unsigned long)data.length);
 	if (tag == SOCKS_OPEN) {
 		 // 首次收到直接扔回x05x00
 		[sock writeData:[[NSData new] convertHexStrToData:@"0500"] withTimeout:-1 tag:SOCKS_OPEN];
@@ -112,39 +125,27 @@
 	}
 	
 	if (tag == SOCKS_INCOMING_READ) {
-		NSData *encodedData = [[CCCrypto new] encryptData:data Cryptor:self.crypto];
-		NSLog(@"加密前data=>%@",data);
+		NSData *encodedData = [self.encryptor encryptData:data];
 		[self.outgoingSocket writeData:encodedData withTimeout:-1 tag:SOCKS_OUTGOING_WRITE];
 		[self.outgoingSocket readDataWithTimeout:-1 tag:SOCKS_OUTGOING_READ];
 		[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
 	}
 	if (tag == SOCKS_OUTGOING_READ) {
-		NSData *encData;
-		if(!self.decrypto){
-			// 首先读取iv
-			NSData *iv = [data subdataWithRange:NSMakeRange(0, 16)];
-			NSData *key = [[NSData new] generateKey:[@"barfoo!" dataUsingEncoding:NSUTF8StringEncoding] keyLen:32 IVLen:16];
-			self.decrypto = [[CCCrypto new] initWithCCOperation:kCCDecrypt CCMode:kCCModeCFB CCAlgorithm:kCCAlgorithmAES IV:iv Key:key];
-			encData = [[CCCrypto new] encryptData:[data subdataWithRange:NSMakeRange(16, data.length-16)] Cryptor:self.decrypto];
-		}else{
-			encData = [[CCCrypto new] encryptData:data Cryptor:self.decrypto];
-		}
-		NSLog(@"解密后data=>%@",encData);
-		[self.proxySocket writeData:encData withTimeout:-1 tag:SOCKS_INCOMING_WRITE];
+		NSData *encodedData = [self.encryptor decryptData:data];
+		[self.proxySocket writeData:encodedData withTimeout:-1 tag:SOCKS_INCOMING_WRITE];
 		[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
 		[self.outgoingSocket readDataWithTimeout:-1 tag:SOCKS_OUTGOING_READ];
 	}
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
-	NSData *encodedData = [[CCCrypto new] encryptData:self.buffer Cryptor:self.crypto];
+	//		NSData *encodedData = [[CCCrypto new] encryptData:self.buffer Cryptor:self.crypto];
 	
-	NSMutableData *lastSend = [NSMutableData new];
-	[lastSend appendData:self.iv];
-	[lastSend appendData:encodedData];
-	
-	[self.outgoingSocket writeData:lastSend withTimeout:-1 tag:0];
-	
+	//		NSMutableData *lastSend = [NSMutableData new];
+	//		[lastSend appendData:self.iv];
+	//		[lastSend appendData:encodedData];
+	NSData *encodedData = [self.encryptor encryptData:self.buffer];
+	[self.outgoingSocket writeData:encodedData withTimeout:-1 tag:0];
 	[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
 }
 

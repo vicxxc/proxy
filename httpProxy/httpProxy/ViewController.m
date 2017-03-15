@@ -12,10 +12,11 @@
 #import "ProxySocket.h"
 #import "SOCKSProxy.h"
 #import <NAChloride.h>
-#import "NSData+AES256.h"
-#import "CCCrypto.h"
+//#import "NSData+AES256.h"
+//#import "CCCrypto.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
+#import "Encryptor.h"
 
 @interface ViewController ()<GCDAsyncSocketDelegate>
 @property (nonatomic, strong) GCDAsyncSocket *serverSocket;
@@ -27,6 +28,12 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+//	Encryptor *encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"aes-256-cfb"];
+//	NSLog(@"111111");
+//	return;
+	
+	
 	
 	self.proxy = [[SOCKSProxy alloc] init];
 	[self.proxy startProxyOnPort:9997];

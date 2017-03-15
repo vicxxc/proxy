@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7F4459916FA1E8A2EB17D097 /* libPods-httpProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E68046B64B8D266F43A0D /* libPods-httpProxy.a */; };
+		811B5D181E78F72B00284F0F /* StreamCryptoProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 811B5D171E78F72B00284F0F /* StreamCryptoProcessor.m */; };
 		812D88361E67FC7700CBD8E5 /* HTTPHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 812D88351E67FC7700CBD8E5 /* HTTPHeader.m */; };
 		812FF5041E70401F004762A2 /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 812FF5031E70401F004762A2 /* NSData+AES256.m */; };
 		81C33E4A1E70E15A00555F58 /* Rc4.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C33E491E70E15A00555F58 /* Rc4.m */; };
 		81C6D1E01E72D14C004B780A /* ShadowSocksProxySocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C6D1DF1E72D14C004B780A /* ShadowSocksProxySocket.m */; };
-		81CC3DCC1E723D9A00581A6D /* CCCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC3DCB1E723D9A00581A6D /* CCCrypto.m */; };
 		81E16B861E717DC900FF228B /* aes-256-cfb.js in Resources */ = {isa = PBXBuildFile; fileRef = 81E16B851E717DC900FF228B /* aes-256-cfb.js */; };
 		81F26F621E6952AC00079AA1 /* ProxySocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F611E6952AC00079AA1 /* ProxySocket.m */; };
 		81F26F671E6CFFB800079AA1 /* RequestSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F661E6CFFB800079AA1 /* RequestSocket.m */; };
@@ -24,12 +24,17 @@
 		81F70AE41E67E5DA001A0393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE21E67E5DA001A0393 /* Main.storyboard */; };
 		81F70AE61E67E5DA001A0393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE51E67E5DA001A0393 /* Assets.xcassets */; };
 		81F70AE91E67E5DA001A0393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE71E67E5DA001A0393 /* LaunchScreen.storyboard */; };
+		81FE3DCB1E780E120051D63E /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FE3DCA1E780E120051D63E /* Encryptor.m */; };
+		81FE3DCE1E7813F90051D63E /* NSData+Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FE3DCD1E7813F90051D63E /* NSData+Encryptor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1254368A0E13C39B387C043D /* Pods-httpProxy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpProxy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-httpProxy/Pods-httpProxy.debug.xcconfig"; sourceTree = "<group>"; };
 		377E27B458491126F4F664E8 /* Pods-httpProxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpProxy.release.xcconfig"; path = "Pods/Target Support Files/Pods-httpProxy/Pods-httpProxy.release.xcconfig"; sourceTree = "<group>"; };
 		708E68046B64B8D266F43A0D /* libPods-httpProxy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-httpProxy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		811B5D121E78F43900284F0F /* StreamCryptoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCryptoProtocol.h; sourceTree = "<group>"; };
+		811B5D161E78F72B00284F0F /* StreamCryptoProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamCryptoProcessor.h; sourceTree = "<group>"; };
+		811B5D171E78F72B00284F0F /* StreamCryptoProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamCryptoProcessor.m; sourceTree = "<group>"; };
 		812D88341E67FC7700CBD8E5 /* HTTPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHeader.h; sourceTree = "<group>"; };
 		812D88351E67FC7700CBD8E5 /* HTTPHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPHeader.m; sourceTree = "<group>"; };
 		812FF5021E70401F004762A2 /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
@@ -38,8 +43,6 @@
 		81C33E491E70E15A00555F58 /* Rc4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rc4.m; sourceTree = "<group>"; };
 		81C6D1DE1E72D14C004B780A /* ShadowSocksProxySocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowSocksProxySocket.h; sourceTree = "<group>"; };
 		81C6D1DF1E72D14C004B780A /* ShadowSocksProxySocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowSocksProxySocket.m; sourceTree = "<group>"; };
-		81CC3DCA1E723D9A00581A6D /* CCCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCrypto.h; sourceTree = "<group>"; };
-		81CC3DCB1E723D9A00581A6D /* CCCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCrypto.m; sourceTree = "<group>"; };
 		81E16B851E717DC900FF228B /* aes-256-cfb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "aes-256-cfb.js"; sourceTree = "<group>"; };
 		81F26F601E6952AC00079AA1 /* ProxySocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxySocket.h; sourceTree = "<group>"; };
 		81F26F611E6952AC00079AA1 /* ProxySocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySocket.m; sourceTree = "<group>"; };
@@ -60,6 +63,10 @@
 		81F70AE51E67E5DA001A0393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81F70AE81E67E5DA001A0393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81F70AEA1E67E5DA001A0393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81FE3DC91E780E120051D63E /* Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
+		81FE3DCA1E780E120051D63E /* Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
+		81FE3DCC1E7813F90051D63E /* NSData+Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryptor.h"; sourceTree = "<group>"; };
+		81FE3DCD1E7813F90051D63E /* NSData+Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryptor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +101,8 @@
 		812FF4FE1E701B3D004762A2 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				81FE3DCC1E7813F90051D63E /* NSData+Encryptor.h */,
+				81FE3DCD1E7813F90051D63E /* NSData+Encryptor.m */,
 				812FF5021E70401F004762A2 /* NSData+AES256.h */,
 				812FF5031E70401F004762A2 /* NSData+AES256.m */,
 				81C33E481E70E15A00555F58 /* Rc4.h */,
@@ -163,8 +172,11 @@
 				81F26F651E6CFFB800079AA1 /* RequestSocket.h */,
 				81F26F661E6CFFB800079AA1 /* RequestSocket.m */,
 				81E16B851E717DC900FF228B /* aes-256-cfb.js */,
-				81CC3DCA1E723D9A00581A6D /* CCCrypto.h */,
-				81CC3DCB1E723D9A00581A6D /* CCCrypto.m */,
+				81FE3DC91E780E120051D63E /* Encryptor.h */,
+				81FE3DCA1E780E120051D63E /* Encryptor.m */,
+				811B5D121E78F43900284F0F /* StreamCryptoProtocol.h */,
+				811B5D161E78F72B00284F0F /* StreamCryptoProcessor.h */,
+				811B5D171E78F72B00284F0F /* StreamCryptoProcessor.m */,
 			);
 			path = httpProxy;
 			sourceTree = "<group>";
@@ -301,18 +313,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				811B5D181E78F72B00284F0F /* StreamCryptoProcessor.m in Sources */,
 				812D88361E67FC7700CBD8E5 /* HTTPHeader.m in Sources */,
 				812FF5041E70401F004762A2 /* NSData+AES256.m in Sources */,
 				81F70AE11E67E5DA001A0393 /* ViewController.m in Sources */,
 				81F70ADE1E67E5DA001A0393 /* AppDelegate.m in Sources */,
 				81F26F741E6D881D00079AA1 /* SOCKSProxySocket.m in Sources */,
 				81F26F731E6D881D00079AA1 /* SOCKSProxy.m in Sources */,
-				81CC3DCC1E723D9A00581A6D /* CCCrypto.m in Sources */,
 				81F26F621E6952AC00079AA1 /* ProxySocket.m in Sources */,
 				81F26F671E6CFFB800079AA1 /* RequestSocket.m in Sources */,
 				81F70ADB1E67E5DA001A0393 /* main.m in Sources */,
 				81C33E4A1E70E15A00555F58 /* Rc4.m in Sources */,
+				81FE3DCE1E7813F90051D63E /* NSData+Encryptor.m in Sources */,
 				81C6D1E01E72D14C004B780A /* ShadowSocksProxySocket.m in Sources */,
+				81FE3DCB1E780E120051D63E /* Encryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
