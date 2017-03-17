@@ -6,11 +6,19 @@ SOCKS5_PROXY_PORT = 9997 # socks 代理本地端口
 default_socket = socket.socket
 socks.set_default_proxy(socks.SOCKS5, SOCKS5_PROXY_HOST, SOCKS5_PROXY_PORT) 
 socket.socket = socks.socksocket
-url = 'https://baidu.com'
+url1 = 'https://www.baidu.com'
+url2 = 'http://baidu.com'
 import requests
-html_source = requests.get(url, headers={"User-Agent": "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101"}).text
-print html_source
-if html_source:
-    print 'ok'
+html_source1 = requests.get(url1, headers={"User-Agent": "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101"}).text
+print html_source1
+if html_source1:
+    print 'url1ok'
 else:
-    print 'fail'
+    print 'url1fail'
+
+html_source2 = requests.get(url2, headers={"User-Agent": "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101"}).text
+print html_source2
+if html_source2:
+    print 'url2ok'
+else:
+    print 'url2fail'

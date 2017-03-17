@@ -8,6 +8,7 @@
 
 #import "Encryptor.h"
 #import "NSData+Encryptor.h"
+#import <NAAEAD.h>
 
 typedef NS_ENUM(NSUInteger, EncryptMethod) {
 	AES128CFB,
@@ -16,6 +17,10 @@ typedef NS_ENUM(NSUInteger, EncryptMethod) {
 	CHACHA20,
 	SALSA20,
 	RC4MD5
+};
+typedef NS_ENUM(NSUInteger, Operation) {
+	ENCRYPT,
+	DECRYPT
 };
 
 @interface Encryptor()
@@ -118,7 +123,7 @@ typedef NS_ENUM(NSUInteger, EncryptMethod) {
 		self.ifWriteIV = YES;
 		[toSendData appendData:self.encryptIV];
 	}
-	[toSendData appendData:[self updateData:data cryptor:self.encryptor]];
+	[toSendData appendData:[self updateData:data operation:ENCRYPT]];
 	return [[NSData alloc] initWithData:toSendData];
 }
 
@@ -130,27 +135,45 @@ typedef NS_ENUM(NSUInteger, EncryptMethod) {
 	}else{
 		toDecryptedData = data;
 	}
-	return [self updateData:toDecryptedData cryptor:self.decryptor];
+	return [self updateData:toDecryptedData operation:DECRYPT];
 }
 
-- (NSData *)updateData:(NSData *)data cryptor:(CCCryptorRef)cryptor{
-	NSMutableData *cipherDataEncrypt = [NSMutableData dataWithLength:data.length + kCCBlockSizeAES128];
-	size_t outLengthDecrypt;
-	CCCryptorStatus updateDecrypt = CCCryptorUpdate(cryptor,
-													data.bytes,                     //const void *dataIn,
-													data.length,                    //size_t dataInLength,
-													cipherDataEncrypt.mutableBytes, //void *dataOut,
-													cipherDataEncrypt.length,       // size_t dataOutAvailable,
-													&outLengthDecrypt);             // size_t *dataOutMoved)
-	
-	if (updateDecrypt == kCCSuccess) {
-		cipherDataEncrypt.length = outLengthDecrypt;
-		CCCryptorFinal(cryptor,							// CCCryptorRef cryptorRef,
-					   cipherDataEncrypt.mutableBytes,  // void *dataOut,
-					   cipherDataEncrypt.length,        // size_t dataOutAvailable,
-					   &outLengthDecrypt);              // size_t *dataOutMoved)
+- (NSData *)updateData:(NSData *)data operation:(Operation)operation{
+	if(self.method == AES128CFB || self.method == AES192CFB || self.method == AES256CFB){
+		 CCCryptorRef cryptor;
+		if(operation == DECRYPT){
+			cryptor = self.decryptor;
+		}else{
+			cryptor = self.encryptor;
+		}
+		NSMutableData *cipherDataEncrypt = [NSMutableData dataWithLength:data.length + kCCBlockSizeAES128];
+		size_t outLengthDecrypt;
+		CCCryptorStatus updateDecrypt = CCCryptorUpdate(cryptor,
+														data.bytes,                     //const void *dataIn,
+														data.length,                    //size_t dataInLength,
+														cipherDataEncrypt.mutableBytes, //void *dataOut,
+														cipherDataEncrypt.length,       // size_t dataOutAvailable,
+														&outLengthDecrypt);             // size_t *dataOutMoved)
 		
-		return cipherDataEncrypt;
+		if (updateDecrypt == kCCSuccess) {
+			cipherDataEncrypt.length = outLengthDecrypt;
+			CCCryptorFinal(cryptor,							// CCCryptorRef cryptorRef,
+						   cipherDataEncrypt.mutableBytes,  // void *dataOut,
+						   cipherDataEncrypt.length,        // size_t dataOutAvailable,
+						   &outLengthDecrypt);              // size_t *dataOutMoved)
+			
+			return cipherDataEncrypt;
+		}
+	}
+	if(self.method == CHACHA20){
+		NSError *error;
+		NSData *updateData;
+		if(operation == DECRYPT){
+			updateData = [[NAAEAD new] encryptChaCha20Poly1305:data nonce:self.decryptIV key:self.key additionalData:nil error:&error];
+		}else{
+			updateData = [[NAAEAD new] decryptChaCha20Poly1305:data nonce:self.encryptIV key:self.key additionalData:nil error:&error];
+		}
+		return updateData;
 	}
 	return nil;
 }

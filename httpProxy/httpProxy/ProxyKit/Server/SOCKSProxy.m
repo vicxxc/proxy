@@ -13,8 +13,6 @@
 @property (nonatomic, strong) GCDAsyncSocket *listeningSocket;
 @property (nonatomic) dispatch_queue_t listeningQueue;
 @property (nonatomic, strong) NSMutableSet *activeSockets;
-//@property (nonatomic) NSUInteger totalBytesWritten;
-//@property (nonatomic) NSUInteger totalBytesRead;
 @property (nonatomic, strong) NSMutableDictionary *authorizedUsers;
 
 @end
@@ -75,12 +73,6 @@
     ShadowSocksProxySocket *proxySocket = [[ShadowSocksProxySocket alloc] initWithSocket:newSocket];
 //	SOCKSProxySocket *proxySocket = [[SOCKSProxySocket alloc] initWithSocket:newSocket delegate:self];
     [self.activeSockets addObject:proxySocket];
-    
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(socksProxy:clientDidConnect:)]) {
-//        dispatch_async(self.callbackQueue, ^{
-//            [self.delegate socksProxy:self clientDidConnect:proxySocket];
-//        });
-//    }
 }
 
 - (NSUInteger) connectionCount {

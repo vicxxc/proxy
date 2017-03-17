@@ -5,5 +5,5 @@
     "local_port":9998,
     "password":"barfoo!",
     "timeout":600,
-    "method":"aes-256-cfb"
+    "method":"aes-128-cfb"
 }

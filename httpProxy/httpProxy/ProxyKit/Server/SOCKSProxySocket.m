@@ -155,24 +155,10 @@
 		[self.outgoingSocket writeData:data withTimeout:-1 tag:SOCKS_OUTGOING_WRITE];
 		[self.outgoingSocket readDataWithTimeout:-1 tag:SOCKS_OUTGOING_READ];
 		[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
-//		NSUInteger dataLength = data.length;
-//		self.totalBytesWritten += dataLength;
-//		if (self.delegate && [self.delegate respondsToSelector:@selector(proxySocket:didWriteDataOfLength:)]) {
-//			dispatch_async(self.callbackQueue, ^{
-//				[self.delegate proxySocket:self didWriteDataOfLength:dataLength];
-//			});
-//		}
 	} else if (tag == SOCKS_OUTGOING_READ) {
 		[self.proxySocket writeData:data withTimeout:-1 tag:SOCKS_INCOMING_WRITE];
 		[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];
 		[self.outgoingSocket readDataWithTimeout:-1 tag:SOCKS_OUTGOING_READ];
-//		NSUInteger dataLength = data.length;
-//		self.totalBytesRead += dataLength;
-//		if (self.delegate && [self.delegate respondsToSelector:@selector(proxySocket:didReadDataOfLength:)]) {
-//			dispatch_async(self.callbackQueue, ^{
-//				[self.delegate proxySocket:self didReadDataOfLength:dataLength];
-//			});
-//		}
 	}
 }
 

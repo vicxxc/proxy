@@ -51,19 +51,13 @@
 		self.proxySocket.delegateQueue = delegateQueue;
 		self.outgoingSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:delegateQueue];
 		self.proxySocket.delegate = self;
-//		NSData *key = [[NSData new] generateKey:[@"barfoo!" dataUsingEncoding:NSUTF8StringEncoding] keyLen:32 IVLen:16];
-//		self.iv = [[NSData new] convertHexStrToData:@"3d32955f8615096eee96038ba2dc4b61"];
-//		self.crypto = [[CCCrypto new] initWithCCOperation:kCCEncrypt CCMode:kCCModeCFB CCAlgorithm:kCCAlgorithmAES IV:self.iv Key:key];
-//		Encryptor *encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"aes-256-cfb"];
-//		self.crypto = encryptor.cipher;
-		self.encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"aes-256-cfb"];
+		self.encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"chacha20"];
 		[self.proxySocket readDataWithTimeout:TIMEOUT_CONNECT tag:SOCKS_OPEN];
 	}
 	return self;
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
-//	NSLog(@"-------didReadData%@-----%lu",data,(unsigned long)data.length);
 	if (tag == SOCKS_OPEN) {
 		 // 首次收到直接扔回x05x00
 		[sock writeData:[[NSData new] convertHexStrToData:@"0500"] withTimeout:-1 tag:SOCKS_OPEN];
@@ -139,11 +133,6 @@
 }
 
 - (void) socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port {
-	//		NSData *encodedData = [[CCCrypto new] encryptData:self.buffer Cryptor:self.crypto];
-	
-	//		NSMutableData *lastSend = [NSMutableData new];
-	//		[lastSend appendData:self.iv];
-	//		[lastSend appendData:encodedData];
 	NSData *encodedData = [self.encryptor encryptData:self.buffer];
 	[self.outgoingSocket writeData:encodedData withTimeout:-1 tag:0];
 	[self.proxySocket readDataWithTimeout:-1 tag:SOCKS_INCOMING_READ];

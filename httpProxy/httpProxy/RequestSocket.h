@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "ProxySocket.h"
+#import <GCDAsyncSocket.h>
 
 @interface RequestSocket : NSObject
 
 @property (nonatomic, copy) void(^request_didReadData)(GCDAsyncSocket *socket,NSData *data,long tag);
-- (instancetype)initWithData:(NSData *)data;
+- (instancetype)initWithData:(NSData *)data socket:(GCDAsyncSocket *)clientSocket;
 
 @end

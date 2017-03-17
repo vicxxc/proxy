@@ -17,6 +17,7 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonDigest.h>
 #import "Encryptor.h"
+#import <NAAEAD.h>
 
 @interface ViewController ()<GCDAsyncSocketDelegate>
 @property (nonatomic, strong) GCDAsyncSocket *serverSocket;
@@ -28,22 +29,15 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+//	self.proxy = [[SOCKSProxy alloc] init];
+//	[self.proxy startProxyOnPort:9997];
 	
-//	Encryptor *encryptor = [[Encryptor alloc] initWithPassword:@"barfoo!" method:@"aes-256-cfb"];
-//	NSLog(@"111111");
-//	return;
-	
-	
-	
-	self.proxy = [[SOCKSProxy alloc] init];
-	[self.proxy startProxyOnPort:9997];
-	
-//	self.allConnectedSockets = [NSMutableArray new];
-//	self.serverSocket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-//	self.serverSocket.delegate = self;
-//	NSError *error;
-//	[self.serverSocket acceptOnPort:6543 error:&error];
-//	NSLog(@"error,%@",error);
+	self.allConnectedSockets = [NSMutableArray new];
+	self.serverSocket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+	self.serverSocket.delegate = self;
+	NSError *error;
+	[self.serverSocket acceptOnPort:6543 error:&error];
+	NSLog(@"error,%@",error);
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
