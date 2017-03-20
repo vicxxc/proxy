@@ -10,11 +10,29 @@
 #import "HTTPHeader.h"
 #import "RequestSocket.h"
 
+typedef NS_ENUM(NSUInteger, HTTPProxyReadStatus) {
+	HTTPProxyReadInvalid,
+	HTTPProxyReadingFirstHeader,
+	HTTPProxyPendingFirstHeader,
+	HTTPProxyReadingHeader,
+	HTTPProxyReadingContent,
+	HTTPProxyReadStopped
+};
+
+typedef NS_ENUM(NSUInteger, HTTPProxyWriteStatus) {
+	HTTPProxyWriteInvalid,
+	HTTPProxyWriteConnectResponse,
+	HTTPProxyWriteForwarding,
+	HTTPProxyWriteStopped
+};
+
 @interface ProxySocket()<GCDAsyncSocketDelegate>
 @property (nonatomic, strong) GCDAsyncSocket *clientSocket;
 @property (nonatomic, strong) GCDAsyncSocket *requestSocket;
 @property (nonatomic, strong) NSData *toSendData;
 @property (nonatomic, strong) HTTPHeader *header;
+@property (nonatomic, assign) HTTPProxyWriteStatus httpProxyWriteStatus;
+@property (nonatomic, assign) HTTPProxyReadStatus httpProxyReadStatus;
 @end
 
 @implementation ProxySocket
@@ -25,13 +43,19 @@
 		self.clientSocket = clientSocket;
 		self.clientSocket.delegate = self;
 //		self.toSendData = [NSMutableData new];
-		[self.clientSocket readDataWithTimeout:-1 tag:0];
+//		[self.clientSocket readDataWithTimeout:-1 tag:0];
+		self.httpProxyReadStatus = HTTPProxyReadingFirstHeader;
+		[self.clientSocket readDataToData:[@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
 	}
 	return self;
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+	if(self.httpProxyReadStatus == HTTPProxyReadingFirstHeader){
+		
+	}
+	
 	if(!self.requestSocket){
 		self.header = [[HTTPHeader alloc] initWithHeaderData:data];
 		NSError *error;
