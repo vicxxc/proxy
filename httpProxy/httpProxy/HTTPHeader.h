@@ -11,7 +11,7 @@
 @interface HTTPHeader : NSObject
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSString *method;
-@property (nonatomic, assign) BOOL isConnect;
+@property (nonatomic, assign) BOOL isConnectMethod;
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSString *host;
@@ -19,5 +19,6 @@
 @property (nonatomic, assign) NSInteger contentLength;
 @property (nonatomic, strong) NSMutableArray *headers;
 
-- (instancetype)initWithHeaderData:(NSData *)data;
+- (instancetype)initWithHeaderData:(NSData *)data error:(NSError **)errPtr;
+- (void)removeProxyHeader;
 @end

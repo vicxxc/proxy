@@ -8,11 +8,23 @@
 
 #import "Utils.h"
 
+@implementation HTTPData
+
+- (instancetype)init {
+	self = [super init];
+	if (self) {
+		self.DoubleCRLF = [@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding];
+	}
+	return self;
+}
+@end
+
 @implementation Utils
 
 - (instancetype)init {
 	self = [super init];
 	if (self) {
+		self.HTTPData = [[HTTPData alloc] init];
 	}
 	return self;
 }

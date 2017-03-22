@@ -8,9 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface HTTPData : NSObject
-@property (nonatomic, strong) NSString *DoubleCRLF;
+@property (nonatomic, strong) NSData *DoubleCRLF;
 @end
 
 @interface Utils : NSObject

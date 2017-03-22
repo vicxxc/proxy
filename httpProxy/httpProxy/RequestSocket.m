@@ -23,7 +23,8 @@
 		self.requestSocket = [[GCDAsyncSocket alloc]initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
 		self.clientSocket = clientSocket;
 		self.requestSocket.delegate = self;
-		self.header = [[HTTPHeader alloc] initWithHeaderData:data];
+		NSError *error1;
+		self.header = [[HTTPHeader alloc] initWithHeaderData:data error:&error1];;
 		NSError *error;
 		[self.requestSocket connectToHost:self.header.host onPort:self.header.port error:&error];
 		self.toSendData = data;
