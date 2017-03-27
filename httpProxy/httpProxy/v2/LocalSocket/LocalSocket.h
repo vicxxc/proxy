@@ -11,11 +11,16 @@
 #import "GCDTCPSocket.h"
 #import "ConnectSession.h"
 #import "SocketProtocol.h"
+#import "RawTCPSocketProtocol.h"
 
+@class RemoteSocket;
+@protocol SocketProtocol;
 @protocol socketDelegate;
-@interface LocalSocket : NSObject
-@property (nonatomic, strong) GCDTCPSocket *socket;
-@property (nonatomic, weak) id<socketDelegate> socketDelegate;
-- (instancetype)initWithSocket:(GCDTCPSocket *)socket;
+@interface LocalSocket : NSObject<SocketProtocol,RawTCPSocketDelegate>
+@property (nonatomic, strong) ConnectSession *session;
+@property (nonatomic, strong) id<RawTCPSocketProtocol> socket;
+@property (nonatomic, weak) id<socketDelegate> delegate;
+- (instancetype)initWithSocket:(id<RawTCPSocketProtocol>)socket;
 - (void)openSocket;
+- (void)respondToRemoteSocket:(RemoteSocket *)remoteSocket;
 @end

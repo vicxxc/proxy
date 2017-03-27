@@ -14,6 +14,7 @@
 	self = [super init];
 	if (self) {
 		self.DoubleCRLF = [@"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding];
+		self.ConnectSuccessResponse = [@"HTTP/1.1 200 Connection Established\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding];
 	}
 	return self;
 }

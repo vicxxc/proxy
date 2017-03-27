@@ -7,7 +7,6 @@
 //
 
 #import "LocalServer.h"
-#import "Tunnel.h"
 
 @interface LocalServer ()
 @property (nonatomic, strong) NSMutableArray<Tunnel *> *tunnelArray;
@@ -36,8 +35,14 @@
 
 - (void)didAcceptNewSocket:(LocalSocket *)localSocket{
 	Tunnel *tunnel = [[Tunnel alloc] initWithLocalSocket:localSocket];
+	tunnel.tunnelDelegate = self;
 	[self.tunnelArray addObject:tunnel];
 	[tunnel openTunnel];
+}
+
+- (void)tunnelDidClose:(Tunnel *)tunnel
+{
+	[self.tunnelArray removeObject:tunnel];
 }
 
 @end

@@ -21,18 +21,22 @@
 //#import "Tunnel.h"
 //#import "HttpLocalSocket.h"
 //#import "GCDTCPSocket.h"
+#import "GCDHTTPLocalServer.h"
 
 @interface ViewController ()
 //@property (nonatomic, strong) GCDAsyncSocket *serverSocket;
 //@property (nonatomic, strong) NSMutableArray *allConnectedSockets;
 //@property (nonatomic, strong) SOCKSProxy *proxy;
 //@property (nonatomic, strong) NSMutableArray<Tunnel *> *tunnelArray;
+@property (nonatomic, strong) GCDHTTPLocalServer *httpLocalServer;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.httpLocalServer = [[GCDHTTPLocalServer alloc] initWithIpAddress:@"127.0.0.1" port:6543];
+	[self.httpLocalServer start];
 //	self.proxy = [[SOCKSProxy alloc] init];
 //	[self.proxy startProxyOnPort:9997];
 //	

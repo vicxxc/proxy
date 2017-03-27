@@ -9,19 +9,11 @@
 #import "HTTPStreamScanner.h"
 #import "HTTPHeader.h"
 
-typedef NS_ENUM(NSUInteger, HTTPStreamScannerReadStatus) {
-	HTTPStreamScannerReadHeader,
-	HTTPStreamScannerReadContent,
-	HTTPStreamScannerStop
-};
-
-
 @implementation HTTPStreamScannerResult
 
 @end
 
 @interface HTTPStreamScanner()
-@property (nonatomic, assign) HTTPStreamScannerReadStatus readStatus;
 @property (nonatomic, strong) HTTPHeader *httpHeader;
 @property (nonatomic, assign) BOOL isConnect;
 @property (nonatomic, assign) NSInteger remainContentLength;

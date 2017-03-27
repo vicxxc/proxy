@@ -105,6 +105,11 @@ typedef NS_ENUM(NSUInteger, HTTPHeaderError) {
 //	}];
 }
 
+- (NSData *)toData
+{
+	return [NSData new];
+}
+
 - (NSMutableArray *)splitStringMaxSplit1:(NSString *)sourcestring separator:(NSString *)separator
 {
 	NSArray *array = [sourcestring componentsSeparatedByString:separator];

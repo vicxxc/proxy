@@ -13,4 +13,5 @@
 @property (nonatomic, strong) NSString *ipAddress;
 @property (nonatomic, assign) NSInteger port;
 - (instancetype)initWithHost:(NSString *)host port:(NSInteger)port;
+- (void)disconnected:(NSError *)error;
 @end

@@ -1,5 +1,5 @@
 //
-//  RemoteSocket.m
+//  HttpRemoteSocket.h
 //  httpProxy
 //
 //  Created by scorpio on 2017/3/21.
@@ -8,9 +8,6 @@
 
 #import "RemoteSocket.h"
 
-@implementation RemoteSocket
-- (void)openSocketWithSession:(ConnectSession *)session
-{
-	
-}
+@interface DirectRemoteSocket : RemoteSocket
+
 @end

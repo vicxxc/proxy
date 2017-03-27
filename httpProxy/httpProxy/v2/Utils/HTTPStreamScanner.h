@@ -13,8 +13,15 @@ typedef NS_ENUM(NSUInteger, HTTPStreamScannerResultType) {
 	HTTPStreamScannerResultContent
 };
 
+typedef NS_ENUM(NSUInteger, HTTPStreamScannerReadStatus) {
+	HTTPStreamScannerReadHeader,
+	HTTPStreamScannerReadContent,
+	HTTPStreamScannerStop
+};
+
 @class HTTPStreamScannerResult;
 @interface HTTPStreamScanner : NSObject
+@property (nonatomic, assign) HTTPStreamScannerReadStatus readStatus;
 - (HTTPStreamScannerResult *)analysis:(NSData *)data error:(NSError **)errPtr;
 @end
 

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "LocalSocket.h"
+#import "Tunnel.h"
 
-@interface LocalServer : NSObject
+@interface LocalServer : NSObject<TunnelDelegate>
 @property (nonatomic, strong) NSString *ipAddress;
 @property (nonatomic, assign) uint16_t	port;
 

@@ -21,4 +21,5 @@
 
 - (instancetype)initWithHeaderData:(NSData *)data error:(NSError **)errPtr;
 - (void)removeProxyHeader;
+- (NSData *)toData;
 @end

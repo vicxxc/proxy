@@ -10,6 +10,7 @@
 
 @interface HTTPData : NSObject
 @property (nonatomic, strong) NSData *DoubleCRLF;
+@property (nonatomic, strong) NSData *ConnectSuccessResponse;
 @end
 
 @interface Utils : NSObject

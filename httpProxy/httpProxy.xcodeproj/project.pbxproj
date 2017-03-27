@@ -8,23 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		7F4459916FA1E8A2EB17D097 /* libPods-httpProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E68046B64B8D266F43A0D /* libPods-httpProxy.a */; };
-		812D88361E67FC7700CBD8E5 /* HTTPHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 812D88351E67FC7700CBD8E5 /* HTTPHeader.m */; };
-		8165FFEC1E7FAB96000A148B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165FFEB1E7FAB96000A148B /* Utils.m */; };
-		8165FFEF1E7FAF93000A148B /* HTTPStreamScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165FFEE1E7FAF93000A148B /* HTTPStreamScanner.m */; };
+		8165E1B01E88FA690004E7BD /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165E1AF1E88FA690004E7BD /* Encryptor.m */; };
 		8165FFF21E80C96C000A148B /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165FFF11E80C96C000A148B /* Tunnel.m */; };
-		8165FFF81E80CA86000A148B /* RemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8165FFF71E80CA86000A148B /* RemoteSocket.m */; };
-		818F0FDB1E812B1F009CF1A6 /* HttpRemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FDA1E812B1F009CF1A6 /* HttpRemoteSocket.m */; };
 		818F0FE41E824DAD009CF1A6 /* LocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE31E824DAD009CF1A6 /* LocalServer.m */; };
 		818F0FE71E824DD6009CF1A6 /* GCDLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE61E824DD6009CF1A6 /* GCDLocalServer.m */; };
 		818F0FEA1E82513E009CF1A6 /* GCDHTTPLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE91E82513E009CF1A6 /* GCDHTTPLocalServer.m */; };
 		818F0FF11E8252E3009CF1A6 /* HttpLocalSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FEE1E8252E3009CF1A6 /* HttpLocalSocket.m */; };
 		818F0FF21E8252E3009CF1A6 /* LocalSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF01E8252E3009CF1A6 /* LocalSocket.m */; };
-		81B9D8591E80FF3600AFBE1B /* GCDTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9D8581E80FF3600AFBE1B /* GCDTCPSocket.m */; };
-		81B9D85C1E8112F800AFBE1B /* ConnectSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9D85B1E8112F800AFBE1B /* ConnectSession.m */; };
+		818F0FF81E825BBB009CF1A6 /* DirectRemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF51E825BBB009CF1A6 /* DirectRemoteSocket.m */; };
+		818F0FF91E825BBB009CF1A6 /* RemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF71E825BBB009CF1A6 /* RemoteSocket.m */; };
+		818F103D1E83A29C009CF1A6 /* AdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F103C1E83A29C009CF1A6 /* AdapterFactory.m */; };
+		81BAD2181E83BCB0003DF7AC /* GCDTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2171E83BCB0003DF7AC /* GCDTCPSocket.m */; };
+		81BAD2641E88F5FB003DF7AC /* ConnectSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD25D1E88F5FB003DF7AC /* ConnectSession.m */; };
+		81BAD2651E88F5FB003DF7AC /* HTTPHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD25F1E88F5FB003DF7AC /* HTTPHeader.m */; };
+		81BAD2661E88F5FB003DF7AC /* HTTPStreamScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2611E88F5FB003DF7AC /* HTTPStreamScanner.m */; };
+		81BAD2671E88F5FB003DF7AC /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2631E88F5FB003DF7AC /* Utils.m */; };
 		81C6D1E01E72D14C004B780A /* ShadowSocksProxySocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C6D1DF1E72D14C004B780A /* ShadowSocksProxySocket.m */; };
-		81E16B861E717DC900FF228B /* aes-256-cfb.js in Resources */ = {isa = PBXBuildFile; fileRef = 81E16B851E717DC900FF228B /* aes-256-cfb.js */; };
-		81F26F621E6952AC00079AA1 /* ProxySocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F611E6952AC00079AA1 /* ProxySocket.m */; };
-		81F26F671E6CFFB800079AA1 /* RequestSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F661E6CFFB800079AA1 /* RequestSocket.m */; };
 		81F26F731E6D881D00079AA1 /* SOCKSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F6F1E6D881D00079AA1 /* SOCKSProxy.m */; };
 		81F26F741E6D881D00079AA1 /* SOCKSProxySocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F711E6D881D00079AA1 /* SOCKSProxySocket.m */; };
 		81F70ADB1E67E5DA001A0393 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F70ADA1E67E5DA001A0393 /* main.m */; };
@@ -33,7 +32,6 @@
 		81F70AE41E67E5DA001A0393 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE21E67E5DA001A0393 /* Main.storyboard */; };
 		81F70AE61E67E5DA001A0393 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE51E67E5DA001A0393 /* Assets.xcassets */; };
 		81F70AE91E67E5DA001A0393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE71E67E5DA001A0393 /* LaunchScreen.storyboard */; };
-		81FE3DCB1E780E120051D63E /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FE3DCA1E780E120051D63E /* Encryptor.m */; };
 		81FE3DCE1E7813F90051D63E /* NSData+Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FE3DCD1E7813F90051D63E /* NSData+Encryptor.m */; };
 /* End PBXBuildFile section */
 
@@ -41,18 +39,10 @@
 		1254368A0E13C39B387C043D /* Pods-httpProxy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpProxy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-httpProxy/Pods-httpProxy.debug.xcconfig"; sourceTree = "<group>"; };
 		377E27B458491126F4F664E8 /* Pods-httpProxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpProxy.release.xcconfig"; path = "Pods/Target Support Files/Pods-httpProxy/Pods-httpProxy.release.xcconfig"; sourceTree = "<group>"; };
 		708E68046B64B8D266F43A0D /* libPods-httpProxy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-httpProxy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		812D88341E67FC7700CBD8E5 /* HTTPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHeader.h; sourceTree = "<group>"; };
-		812D88351E67FC7700CBD8E5 /* HTTPHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPHeader.m; sourceTree = "<group>"; };
-		8165FFEA1E7FAB96000A148B /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
-		8165FFEB1E7FAB96000A148B /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
-		8165FFED1E7FAF93000A148B /* HTTPStreamScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStreamScanner.h; sourceTree = "<group>"; };
-		8165FFEE1E7FAF93000A148B /* HTTPStreamScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPStreamScanner.m; sourceTree = "<group>"; };
+		8165E1AE1E88FA690004E7BD /* Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
+		8165E1AF1E88FA690004E7BD /* Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
 		8165FFF01E80C96C000A148B /* Tunnel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tunnel.h; sourceTree = "<group>"; };
 		8165FFF11E80C96C000A148B /* Tunnel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tunnel.m; sourceTree = "<group>"; };
-		8165FFF61E80CA86000A148B /* RemoteSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteSocket.h; sourceTree = "<group>"; };
-		8165FFF71E80CA86000A148B /* RemoteSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteSocket.m; sourceTree = "<group>"; };
-		818F0FD91E812B1F009CF1A6 /* HttpRemoteSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRemoteSocket.h; sourceTree = "<group>"; };
-		818F0FDA1E812B1F009CF1A6 /* HttpRemoteSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRemoteSocket.m; sourceTree = "<group>"; };
 		818F0FDC1E8132B9009CF1A6 /* SocketProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketProtocol.h; sourceTree = "<group>"; };
 		818F0FE21E824DAD009CF1A6 /* LocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalServer.h; sourceTree = "<group>"; };
 		818F0FE31E824DAD009CF1A6 /* LocalServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalServer.m; sourceTree = "<group>"; };
@@ -64,17 +54,25 @@
 		818F0FEE1E8252E3009CF1A6 /* HttpLocalSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpLocalSocket.m; sourceTree = "<group>"; };
 		818F0FEF1E8252E3009CF1A6 /* LocalSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalSocket.h; sourceTree = "<group>"; };
 		818F0FF01E8252E3009CF1A6 /* LocalSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalSocket.m; sourceTree = "<group>"; };
-		81B9D8571E80FF3600AFBE1B /* GCDTCPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTCPSocket.h; sourceTree = "<group>"; };
-		81B9D8581E80FF3600AFBE1B /* GCDTCPSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTCPSocket.m; sourceTree = "<group>"; };
-		81B9D85A1E8112F800AFBE1B /* ConnectSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectSession.h; sourceTree = "<group>"; };
-		81B9D85B1E8112F800AFBE1B /* ConnectSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectSession.m; sourceTree = "<group>"; };
+		818F0FF41E825BBB009CF1A6 /* DirectRemoteSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectRemoteSocket.h; sourceTree = "<group>"; };
+		818F0FF51E825BBB009CF1A6 /* DirectRemoteSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectRemoteSocket.m; sourceTree = "<group>"; };
+		818F0FF61E825BBB009CF1A6 /* RemoteSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteSocket.h; sourceTree = "<group>"; };
+		818F0FF71E825BBB009CF1A6 /* RemoteSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteSocket.m; sourceTree = "<group>"; };
+		818F103B1E83A29C009CF1A6 /* AdapterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdapterFactory.h; sourceTree = "<group>"; };
+		818F103C1E83A29C009CF1A6 /* AdapterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdapterFactory.m; sourceTree = "<group>"; };
+		81BAD2161E83BCB0003DF7AC /* GCDTCPSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTCPSocket.h; sourceTree = "<group>"; };
+		81BAD2171E83BCB0003DF7AC /* GCDTCPSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTCPSocket.m; sourceTree = "<group>"; };
+		81BAD2191E83BCC6003DF7AC /* RawTCPSocketProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RawTCPSocketProtocol.h; sourceTree = "<group>"; };
+		81BAD25C1E88F5FB003DF7AC /* ConnectSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectSession.h; sourceTree = "<group>"; };
+		81BAD25D1E88F5FB003DF7AC /* ConnectSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectSession.m; sourceTree = "<group>"; };
+		81BAD25E1E88F5FB003DF7AC /* HTTPHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHeader.h; sourceTree = "<group>"; };
+		81BAD25F1E88F5FB003DF7AC /* HTTPHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPHeader.m; sourceTree = "<group>"; };
+		81BAD2601E88F5FB003DF7AC /* HTTPStreamScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPStreamScanner.h; sourceTree = "<group>"; };
+		81BAD2611E88F5FB003DF7AC /* HTTPStreamScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPStreamScanner.m; sourceTree = "<group>"; };
+		81BAD2621E88F5FB003DF7AC /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		81BAD2631E88F5FB003DF7AC /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		81C6D1DE1E72D14C004B780A /* ShadowSocksProxySocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowSocksProxySocket.h; sourceTree = "<group>"; };
 		81C6D1DF1E72D14C004B780A /* ShadowSocksProxySocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowSocksProxySocket.m; sourceTree = "<group>"; };
-		81E16B851E717DC900FF228B /* aes-256-cfb.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "aes-256-cfb.js"; sourceTree = "<group>"; };
-		81F26F601E6952AC00079AA1 /* ProxySocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProxySocket.h; sourceTree = "<group>"; };
-		81F26F611E6952AC00079AA1 /* ProxySocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProxySocket.m; sourceTree = "<group>"; };
-		81F26F651E6CFFB800079AA1 /* RequestSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestSocket.h; sourceTree = "<group>"; };
-		81F26F661E6CFFB800079AA1 /* RequestSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestSocket.m; sourceTree = "<group>"; };
 		81F26F681E6D0CC700079AA1 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		81F26F6E1E6D881D00079AA1 /* SOCKSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOCKSProxy.h; sourceTree = "<group>"; };
 		81F26F6F1E6D881D00079AA1 /* SOCKSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOCKSProxy.m; sourceTree = "<group>"; };
@@ -90,8 +88,6 @@
 		81F70AE51E67E5DA001A0393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81F70AE81E67E5DA001A0393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81F70AEA1E67E5DA001A0393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81FE3DC91E780E120051D63E /* Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
-		81FE3DCA1E780E120051D63E /* Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
 		81FE3DCC1E7813F90051D63E /* NSData+Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryptor.h"; sourceTree = "<group>"; };
 		81FE3DCD1E7813F90051D63E /* NSData+Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryptor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,8 +133,12 @@
 		818F0FDD1E82493A009CF1A6 /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				81BAD25B1E88F5E5003DF7AC /* Utils */,
+				81BAD2151E83BC16003DF7AC /* RawSocket */,
+				818F103A1E83A1F6009CF1A6 /* Factory */,
 				818F0FE11E824D9B009CF1A6 /* LocalServer */,
 				818F0FEC1E8252E3009CF1A6 /* LocalSocket */,
+				818F0FF31E825BBB009CF1A6 /* RemoteSocket */,
 			);
 			path = v2;
 			sourceTree = "<group>";
@@ -159,12 +159,66 @@
 		818F0FEC1E8252E3009CF1A6 /* LocalSocket */ = {
 			isa = PBXGroup;
 			children = (
-				818F0FED1E8252E3009CF1A6 /* HttpLocalSocket.h */,
-				818F0FEE1E8252E3009CF1A6 /* HttpLocalSocket.m */,
 				818F0FEF1E8252E3009CF1A6 /* LocalSocket.h */,
 				818F0FF01E8252E3009CF1A6 /* LocalSocket.m */,
+				818F0FED1E8252E3009CF1A6 /* HttpLocalSocket.h */,
+				818F0FEE1E8252E3009CF1A6 /* HttpLocalSocket.m */,
 			);
 			path = LocalSocket;
+			sourceTree = "<group>";
+		};
+		818F0FF31E825BBB009CF1A6 /* RemoteSocket */ = {
+			isa = PBXGroup;
+			children = (
+				818F0FF41E825BBB009CF1A6 /* DirectRemoteSocket.h */,
+				818F0FF51E825BBB009CF1A6 /* DirectRemoteSocket.m */,
+				818F0FF61E825BBB009CF1A6 /* RemoteSocket.h */,
+				818F0FF71E825BBB009CF1A6 /* RemoteSocket.m */,
+			);
+			path = RemoteSocket;
+			sourceTree = "<group>";
+		};
+		818F103A1E83A1F6009CF1A6 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				818F103B1E83A29C009CF1A6 /* AdapterFactory.h */,
+				818F103C1E83A29C009CF1A6 /* AdapterFactory.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		81BAD2151E83BC16003DF7AC /* RawSocket */ = {
+			isa = PBXGroup;
+			children = (
+				81BAD2191E83BCC6003DF7AC /* RawTCPSocketProtocol.h */,
+				81BAD2161E83BCB0003DF7AC /* GCDTCPSocket.h */,
+				81BAD2171E83BCB0003DF7AC /* GCDTCPSocket.m */,
+			);
+			path = RawSocket;
+			sourceTree = "<group>";
+		};
+		81BAD25A1E88F56B003DF7AC /* backup */ = {
+			isa = PBXGroup;
+			children = (
+				8165E1AE1E88FA690004E7BD /* Encryptor.h */,
+				8165E1AF1E88FA690004E7BD /* Encryptor.m */,
+			);
+			path = backup;
+			sourceTree = "<group>";
+		};
+		81BAD25B1E88F5E5003DF7AC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				81BAD25C1E88F5FB003DF7AC /* ConnectSession.h */,
+				81BAD25D1E88F5FB003DF7AC /* ConnectSession.m */,
+				81BAD25E1E88F5FB003DF7AC /* HTTPHeader.h */,
+				81BAD25F1E88F5FB003DF7AC /* HTTPHeader.m */,
+				81BAD2601E88F5FB003DF7AC /* HTTPStreamScanner.h */,
+				81BAD2611E88F5FB003DF7AC /* HTTPStreamScanner.m */,
+				81BAD2621E88F5FB003DF7AC /* Utils.h */,
+				81BAD2631E88F5FB003DF7AC /* Utils.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		81F26F691E6D881D00079AA1 /* ProxyKit */ = {
@@ -209,7 +263,11 @@
 		81F70AD81E67E5DA001A0393 /* httpProxy */ = {
 			isa = PBXGroup;
 			children = (
+				81BAD25A1E88F56B003DF7AC /* backup */,
 				818F0FDD1E82493A009CF1A6 /* v2 */,
+				8165FFF01E80C96C000A148B /* Tunnel.h */,
+				8165FFF11E80C96C000A148B /* Tunnel.m */,
+				818F0FDC1E8132B9009CF1A6 /* SocketProtocol.h */,
 				812FF4FE1E701B3D004762A2 /* Category */,
 				81F26F691E6D881D00079AA1 /* ProxyKit */,
 				81F70ADC1E67E5DA001A0393 /* AppDelegate.h */,
@@ -222,30 +280,6 @@
 				81F70AE71E67E5DA001A0393 /* LaunchScreen.storyboard */,
 				81F70AEA1E67E5DA001A0393 /* Info.plist */,
 				81F70AD91E67E5DA001A0393 /* Supporting Files */,
-				812D88341E67FC7700CBD8E5 /* HTTPHeader.h */,
-				812D88351E67FC7700CBD8E5 /* HTTPHeader.m */,
-				81F26F601E6952AC00079AA1 /* ProxySocket.h */,
-				81F26F611E6952AC00079AA1 /* ProxySocket.m */,
-				81F26F651E6CFFB800079AA1 /* RequestSocket.h */,
-				81F26F661E6CFFB800079AA1 /* RequestSocket.m */,
-				81E16B851E717DC900FF228B /* aes-256-cfb.js */,
-				81FE3DC91E780E120051D63E /* Encryptor.h */,
-				81FE3DCA1E780E120051D63E /* Encryptor.m */,
-				8165FFEA1E7FAB96000A148B /* Utils.h */,
-				8165FFEB1E7FAB96000A148B /* Utils.m */,
-				8165FFED1E7FAF93000A148B /* HTTPStreamScanner.h */,
-				8165FFEE1E7FAF93000A148B /* HTTPStreamScanner.m */,
-				8165FFF01E80C96C000A148B /* Tunnel.h */,
-				8165FFF11E80C96C000A148B /* Tunnel.m */,
-				8165FFF61E80CA86000A148B /* RemoteSocket.h */,
-				8165FFF71E80CA86000A148B /* RemoteSocket.m */,
-				818F0FD91E812B1F009CF1A6 /* HttpRemoteSocket.h */,
-				818F0FDA1E812B1F009CF1A6 /* HttpRemoteSocket.m */,
-				81B9D8571E80FF3600AFBE1B /* GCDTCPSocket.h */,
-				81B9D8581E80FF3600AFBE1B /* GCDTCPSocket.m */,
-				81B9D85A1E8112F800AFBE1B /* ConnectSession.h */,
-				81B9D85B1E8112F800AFBE1B /* ConnectSession.m */,
-				818F0FDC1E8132B9009CF1A6 /* SocketProtocol.h */,
 			);
 			path = httpProxy;
 			sourceTree = "<group>";
@@ -320,7 +354,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81E16B861E717DC900FF228B /* aes-256-cfb.js in Resources */,
 				81F70AE91E67E5DA001A0393 /* LaunchScreen.storyboard in Resources */,
 				81F70AE61E67E5DA001A0393 /* Assets.xcassets in Resources */,
 				81F70AE41E67E5DA001A0393 /* Main.storyboard in Resources */,
@@ -383,27 +416,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				818F0FF21E8252E3009CF1A6 /* LocalSocket.m in Sources */,
-				812D88361E67FC7700CBD8E5 /* HTTPHeader.m in Sources */,
+				81BAD2641E88F5FB003DF7AC /* ConnectSession.m in Sources */,
+				81BAD2651E88F5FB003DF7AC /* HTTPHeader.m in Sources */,
+				818F0FF81E825BBB009CF1A6 /* DirectRemoteSocket.m in Sources */,
 				81F70AE11E67E5DA001A0393 /* ViewController.m in Sources */,
+				818F103D1E83A29C009CF1A6 /* AdapterFactory.m in Sources */,
 				81F70ADE1E67E5DA001A0393 /* AppDelegate.m in Sources */,
-				8165FFEC1E7FAB96000A148B /* Utils.m in Sources */,
+				81BAD2181E83BCB0003DF7AC /* GCDTCPSocket.m in Sources */,
 				81F26F741E6D881D00079AA1 /* SOCKSProxySocket.m in Sources */,
-				818F0FDB1E812B1F009CF1A6 /* HttpRemoteSocket.m in Sources */,
-				81B9D85C1E8112F800AFBE1B /* ConnectSession.m in Sources */,
+				81BAD2661E88F5FB003DF7AC /* HTTPStreamScanner.m in Sources */,
+				81BAD2671E88F5FB003DF7AC /* Utils.m in Sources */,
 				8165FFF21E80C96C000A148B /* Tunnel.m in Sources */,
-				81B9D8591E80FF3600AFBE1B /* GCDTCPSocket.m in Sources */,
-				8165FFEF1E7FAF93000A148B /* HTTPStreamScanner.m in Sources */,
 				81F26F731E6D881D00079AA1 /* SOCKSProxy.m in Sources */,
-				81F26F621E6952AC00079AA1 /* ProxySocket.m in Sources */,
-				81F26F671E6CFFB800079AA1 /* RequestSocket.m in Sources */,
 				81F70ADB1E67E5DA001A0393 /* main.m in Sources */,
+				818F0FF91E825BBB009CF1A6 /* RemoteSocket.m in Sources */,
 				81FE3DCE1E7813F90051D63E /* NSData+Encryptor.m in Sources */,
 				81C6D1E01E72D14C004B780A /* ShadowSocksProxySocket.m in Sources */,
 				818F0FF11E8252E3009CF1A6 /* HttpLocalSocket.m in Sources */,
-				8165FFF81E80CA86000A148B /* RemoteSocket.m in Sources */,
+				8165E1B01E88FA690004E7BD /* Encryptor.m in Sources */,
 				818F0FEA1E82513E009CF1A6 /* GCDHTTPLocalServer.m in Sources */,
 				818F0FE41E824DAD009CF1A6 /* LocalServer.m in Sources */,
-				81FE3DCB1E780E120051D63E /* Encryptor.m in Sources */,
 				818F0FE71E824DD6009CF1A6 /* GCDLocalServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

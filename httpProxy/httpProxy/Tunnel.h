@@ -21,10 +21,14 @@ typedef NS_ENUM(NSUInteger, TunnelStatus) {
 	TunnelStatusClosed
 };
 
+@class Tunnel;
+@protocol TunnelDelegate <NSObject>
+- (void)tunnelDidClose:(Tunnel *)tunnel;
+@end
+
 @interface Tunnel : NSObject<socketDelegate>
-@property (nonatomic, strong) LocalSocket *localSocket;
-@property (nonatomic, strong) RemoteSocket *remoteSocket;
 @property (nonatomic, assign) TunnelStatus status;
+@property (nonatomic, weak) id<TunnelDelegate> tunnelDelegate;
 
 - (instancetype)initWithLocalSocket:(LocalSocket *)localSocket;
 - (void)openTunnel;

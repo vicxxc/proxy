@@ -10,10 +10,12 @@
 #import "ConnectSession.h"
 #import <GCDAsyncSocket.h>
 #import "SocketProtocol.h"
+#import "GCDTCPSocket.h"
 
 @protocol socketDelegate;
 @interface RemoteSocket : NSObject
-@property (nonatomic, strong) GCDAsyncSocket *socket;
+@property (nonatomic, strong) ConnectSession *session;
+@property (nonatomic, strong) GCDTCPSocket *socket;
 @property (nonatomic, weak) id<socketDelegate> remoteSocketDelegate;
 - (void)openSocketWithSession:(ConnectSession *)session;
 @end

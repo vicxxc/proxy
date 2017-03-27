@@ -26,4 +26,9 @@
 	return _ipAddress;
 }
 
+- (void)disconnected:(NSError *)error
+{
+	
+}
+
 @end

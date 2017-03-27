@@ -7,16 +7,10 @@
 //
 #import <Foundation/Foundation.h>
 #import <GCDAsyncSocket.h>
+#import "RawTCPSocketProtocol.h"
 
-@class GCDTCPSocket;
-@protocol RawTCPSocketDelegate  <NSObject>
-- (void)socket:(GCDTCPSocket *)sock didReadData:(NSData *)data;
-@end
-
-@interface GCDTCPSocket : NSObject
+@interface GCDTCPSocket : NSObject<GCDAsyncSocketDelegate,RawTCPSocketProtocol>
 @property (nonatomic, weak) id<RawTCPSocketDelegate> delegate;
-
+@property (nonatomic, assign) BOOL isConnected;
 - (instancetype)initWithClientSocket:(GCDAsyncSocket *)clientSocket;
-- (void)readData;
-- (void)readDataToData:(NSData *)data;
 @end
