@@ -91,15 +91,13 @@ typedef NS_ENUM(NSUInteger, HTTPLocalSocketWriteStatus) {
 					[self.delegate didReceiveSession:session localSocket:self];
 				}
 			}
-		}
-		if(self.httpLocalSocketReadStatus == HTTPLocalSocketReadingHeader){
+		}else if(self.httpLocalSocketReadStatus == HTTPLocalSocketReadingHeader){
 			self.header = (HTTPHeader *)result.resultData;
 			[self.header removeProxyHeader];
 			if (self.delegate && [self.delegate respondsToSelector:@selector(didReadData:from:)]) {
 				[self.delegate didReadData:data from:self];
 			}
-		}
-		if(self.httpLocalSocketReadStatus == HTTPLocalSocketReadingContent){
+		}else if(self.httpLocalSocketReadStatus == HTTPLocalSocketReadingContent){
 			if (self.delegate && [self.delegate respondsToSelector:@selector(didReadData:from:)]) {
 				[self.delegate didReadData:data from:self];
 			}

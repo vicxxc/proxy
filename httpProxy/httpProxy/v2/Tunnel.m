@@ -72,7 +72,13 @@
 - (void)didWriteData:(NSData *)data by:(id<SocketProtocol>)socket
 {
 	if([socket isKindOfClass:[LocalSocket class]]){
-		[self.remoteSocket readData];
+		WEAKSELF(ws);
+		// 延迟50ms
+		dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((50/1000.0f) * NSEC_PER_SEC));
+		
+		dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+			[ws.remoteSocket readData];
+		});
 	}else if([socket isKindOfClass:[RemoteSocket class]]){
 		[self.localSocket readData];
 	}
