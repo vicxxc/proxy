@@ -13,7 +13,7 @@
 @end
 
 @implementation LocalSocket
-
+@synthesize status = _status;
 - (instancetype)initWithSocket:(id<RawTCPSocketProtocol>)socket
 {
 	self = [super init];

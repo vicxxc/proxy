@@ -8,41 +8,39 @@
 
 #import "DirectRemoteSocket.h"
 
-//typedef NS_ENUM(NSUInteger, DirectRemoteSocketStatus) {
-//	HttpRemoteSocketInvalid,
-//	HttpRemoteSocketConnecting,
-//	HttpRemoteSocketReadingResponse,
-//	HttpRemoteSocketForwarding,
-//	HttpRemoteSocketStopped
-//};
-
 @interface DirectRemoteSocket()
-//@property (nonatomic, strong) NSString *serverHost;
-//@property (nonatomic, assign) uint16_t serverPort;
-//@property (nonatomic, assign) DirectRemoteSocketStatus status;
 @end
 
 @implementation DirectRemoteSocket
-//- (instancetype)initWithServerHost:(NSString *)serverHost serverPort:(uint16_t)serverPort{
-//	self = [super init];
-//	if (self) {
-//		self.serverHost = self.serverHost;
-//		self.serverPort = self.serverPort;
-//	}
-//	return self;
-//}
+
 - (void)openSocketWithSession:(ConnectSession *)session
 {
 	[super openSocketWithSession:session];
-//	self.status = HttpRemoteSocketConnecting;
-//	[self.socket connectToHost:self.serverHost onPort:self.serverPort];
-//	[self.socket connectToHost:session.host onPort:session.port];
+	[self.socket connectToHost:session.host onPort:session.port];
 }
 
-- (void)didConnectToSocket:(RemoteSocket *)socket
+- (void)didConnectWithSocket:(id<RawTCPSocketProtocol>)socket
 {
-//	[super didConnectToSocket:socket];
-//	[self.remoteSocketDelegate didBecomeReadyToForwardWithSocket:<#(SocketProtocol *)#>]
+	[super didConnectWithSocket:socket];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(didBecomeReadyToForwardWithSocket:)]) {
+		[self.delegate didBecomeReadyToForwardWithSocket:self];
+	}
+}
+
+- (void)didReadData:(NSData *)data from:(id<RawTCPSocketProtocol>)socket
+{
+	[super didReadData:data from:socket];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(didReadData:from:)]) {
+		[self.delegate didReadData:data from:self];
+	}
+}
+
+- (void)didWriteData:(NSData *)data by:(id<RawTCPSocketProtocol>)socket
+{
+	[super didWriteData:data by:socket];
+	if (self.delegate && [self.delegate respondsToSelector:@selector(didWriteData:by:)]) {
+		[self.delegate didWriteData:data by:self];
+	}
 }
 
 @end

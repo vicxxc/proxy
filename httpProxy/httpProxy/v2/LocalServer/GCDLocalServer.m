@@ -35,8 +35,8 @@
 
 - (void)socket:(GCDAsyncSocket *)sock didAcceptNewSocket:(GCDAsyncSocket *)newSocket
 {
-	GCDTCPSocket *socket = [[GCDTCPSocket alloc] initWithClientSocket:newSocket];
-	[self handleNewGCDSocket:socket];
+	GCDTCPSocket *clientSocket = [[GCDTCPSocket alloc] initWithClientSocket:newSocket];
+	[self handleNewGCDSocket:clientSocket];
 }
 
 @end

@@ -19,6 +19,7 @@
 	if (self) {
 		self.ipAddress = ipAddress;
 		self.port = port;
+		self.tunnelArray = [NSMutableArray new];
 	}
 	return self;
 }

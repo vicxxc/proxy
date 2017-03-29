@@ -98,16 +98,17 @@ typedef NS_ENUM(NSUInteger, HTTPHeaderError) {
 			}
 		}
 	}
-//	[self.headers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//		if([obj[@"key"] isEqualToString:@"Content-Length"]){
-//			self.contentLength = [obj[@"value"] integerValue];
-//		}
-//	}];
 }
 
 - (NSData *)toData
 {
-	return [NSData new];
+	NSMutableString *header = [NSMutableString new];
+	[header appendFormat:@"%@ %@ %@\r\n",self.method,self.path,self.version];
+	for(id obj in self.headers){
+		[header appendString:[NSString stringWithFormat:@"%@: %@\r\n",obj[@"key"],obj[@"value"]]];
+	}
+	[header appendString:@"\r\n"];
+	return [header dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (NSMutableArray *)splitStringMaxSplit1:(NSString *)sourcestring separator:(NSString *)separator

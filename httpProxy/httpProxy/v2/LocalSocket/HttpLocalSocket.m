@@ -44,16 +44,6 @@ typedef NS_ENUM(NSUInteger, HTTPLocalSocketWriteStatus) {
 
 @implementation HttpLocalSocket
 
-//- (instancetype)initWithSocket:(GCDTCPSocket *)socket
-//{
-//	self = [super initWithSocket:socket];
-//	if (self) {
-//		self.scanner = [HTTPStreamScanner new];
-////		self.socket.delegate = self;
-//	}
-//	return self;
-//}
-
 - (void)openSocket
 {
 	[super openSocket];
@@ -64,12 +54,15 @@ typedef NS_ENUM(NSUInteger, HTTPLocalSocketWriteStatus) {
 - (void)readData
 {
 	if(self.httpLocalSocketReadStatus == HTTPLocalSocketToSendFirstHeader){
+		self.httpLocalSocketReadStatus = HTTPLocalSocketReadingContent;
 		[self.delegate didReadData:[self.header toData] from:self];
+		return;
 	}
 	if(self.scanner.readStatus == HTTPStreamScannerReadContent){
 		[self.socket readData];
 	}else if(self.scanner.readStatus == HTTPStreamScannerReadHeader){
 		[self.socket readDataTo:[Utils new].HTTPData.DoubleCRLF];
+		// [self.socket readData];
 	}else if(self.scanner.readStatus == HTTPStreamScannerStop){
 		self.httpLocalSocketReadStatus = HTTPLocalSocketReadStopped;
 		[self disconnectOf:nil];
@@ -152,5 +145,12 @@ typedef NS_ENUM(NSUInteger, HTTPLocalSocketWriteStatus) {
 			[self.delegate didBecomeReadyToForwardWithSocket:self];
 		}
 	}
+}
+
+- (HTTPStreamScanner *)scanner{
+	if (!_scanner) {
+		_scanner = [HTTPStreamScanner new];
+	}
+	return _scanner;
 }
 @end

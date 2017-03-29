@@ -12,14 +12,16 @@
 #import "ConnectSession.h"
 #import "SocketProtocol.h"
 #import "RawTCPSocketProtocol.h"
+#import "SocketProtocol.h"
 
 @class RemoteSocket;
-@protocol SocketProtocol;
 @protocol socketDelegate;
+@protocol SocketProtocol;
 @interface LocalSocket : NSObject<SocketProtocol,RawTCPSocketDelegate>
 @property (nonatomic, strong) ConnectSession *session;
 @property (nonatomic, strong) id<RawTCPSocketProtocol> socket;
 @property (nonatomic, weak) id<socketDelegate> delegate;
+//@property (nonatomic, assign) SocketStatus status;
 - (instancetype)initWithSocket:(id<RawTCPSocketProtocol>)socket;
 - (void)openSocket;
 - (void)respondToRemoteSocket:(RemoteSocket *)remoteSocket;

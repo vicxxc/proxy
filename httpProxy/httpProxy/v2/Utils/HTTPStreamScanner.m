@@ -67,6 +67,7 @@
 			self.remainContentLength -= data.length;
 			if (!self.isConnect && self.remainContentLength < 0) {
 				self.readStatus = HTTPStreamScannerStop;
+				return result;
 			}
 			
 			[self setNextAction];

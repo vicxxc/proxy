@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ConnectSession : NSObject
+@property (nonatomic, strong) NSString *requestedHost;
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong) NSString *ipAddress;
 @property (nonatomic, assign) NSInteger port;

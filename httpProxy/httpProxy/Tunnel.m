@@ -47,8 +47,40 @@
 	[self.localSocket openSocket];
 }
 
-- (void)socket:(LocalSocket *)sock didReceive:(ConnectSession *)session
+- (void)didBecomeReadyToForwardWithSocket:(id<SocketProtocol>)socket
 {
+	self.readySignal += 1;
+	if(self.readySignal == 2){
+		self.status = TunnelStatusForwarding;
+		[self.remoteSocket readData];
+		[self.localSocket readData];
+	}
+	if([socket isKindOfClass:[RemoteSocket class]]){
+		[self.localSocket respondToRemoteSocket:(RemoteSocket *)socket];
+	}
+}
+
+- (void)didReadData:(NSData *)data from:(id<SocketProtocol>)socket
+{
+	if([socket isKindOfClass:[LocalSocket class]]){
+		[self.remoteSocket writeData:data];
+	}else if([socket isKindOfClass:[RemoteSocket class]]){
+		[self.localSocket writeData:data];
+	}
+}
+
+- (void)didWriteData:(NSData *)data by:(id<SocketProtocol>)socket
+{
+	if([socket isKindOfClass:[LocalSocket class]]){
+		[self.remoteSocket readData];
+	}else if([socket isKindOfClass:[RemoteSocket class]]){
+		[self.localSocket readData];
+	}
+}
+
+- (void)didReceiveSession:(ConnectSession *)session localSocket:(LocalSocket *)localSocket
+{
+	self.status = TunnelStatusWaitingToBeReady;
 	session.ipAddress = session.host;
 	[self openAdapter:session];
 }
@@ -56,36 +88,24 @@
 - (void)openAdapter:(ConnectSession *)session
 {
 	self.remoteSocket = [[[DirectAdapterFactory alloc] init] getAdapterForSession:session];
-	self.remoteSocket.remoteSocketDelegate = self;
+	self.remoteSocket.delegate = self;
 	[self.remoteSocket openSocketWithSession:session];
 }
 
-- (void)didBecomeReadyToForwardWithSocket:(SocketProtocol *)socket
-{
-	self.readySignal += 1;
-	if(self.readySignal == 2){
-		self.status = TunnelStatusForwarding;
-//		[self.remoteSocket ]
-//		[self.localSocket ]
-	}
-//	[self.remoteSocket ]
-}
-
-- (void)didReadData:(NSData *)data from:(SocketProtocol *)socket
+- (void)didConnectToRemoteSocket:(RemoteSocket *)remoteSocket
 {
 	
 }
-
-- (void)didWriteData:(NSData *)data by:(SocketProtocol *)socket
-{
-	
-}
-
 
 - (void)didDisconnectWithSocket:(SocketProtocol *)socket
 {
 	[self close];
 	[self checkStatus];
+}
+
+- (void)updateAdapterWithRemoteSocket:(RemoteSocket *)remoteSocket
+{
+	
 }
 
 - (void)checkStatus
@@ -101,7 +121,6 @@
 - (void)close
 {
 	self.status = TunnelStatusClosed;
-	
 }
 
 - (void)forceClose

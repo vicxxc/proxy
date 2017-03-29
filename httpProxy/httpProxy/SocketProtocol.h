@@ -19,14 +19,13 @@ typedef NS_ENUM(NSUInteger, SocketStatus) {
 	SocketClosed
 };
 
-
 @protocol socketDelegate;
 @protocol SocketProtocol <NSObject>
 @property (nonatomic, strong) id<RawTCPSocketProtocol> socket;
 @property (nonatomic, weak) id<socketDelegate> delegate;
 @property (nonatomic, assign) SocketStatus status;
-@property (nonatomic, assign) BOOL isDisconnected;
-@property (nonatomic, strong) NSString *typeName;
+//@property (nonatomic, assign) BOOL isDisconnected;
+//@property (nonatomic, strong) NSString *typeName;
 - (void)readData;
 - (void)writeData:(NSData *)data;
 - (void)disconnectOf:(NSError *)error;
@@ -42,7 +41,7 @@ typedef NS_ENUM(NSUInteger, SocketStatus) {
 - (void)didDisconnectWithSocket:(id<SocketProtocol>)socket;
 - (void)didReadData:(NSData *)data from:(id<SocketProtocol>)socket;
 - (void)didWriteData:(NSData *)data by:(id<SocketProtocol>)socket;
-- (void)didReceiveSession:(ConnectSession *)session localSocket:(id<SocketProtocol>)localSocket;
+- (void)didReceiveSession:(ConnectSession *)session localSocket:(LocalSocket *)localSocket;
 - (void)didBecomeReadyToForwardWithSocket:(id<SocketProtocol>)socket;
 - (void)updateAdapterWithRemoteSocket:(RemoteSocket *)remoteSocket;
 @end
