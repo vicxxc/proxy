@@ -7,8 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B68AC089650B8E480EFCEB1 /* libPods-PacketTunnel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8DB3E6EA69A8EF2CEC4A1C /* libPods-PacketTunnel.a */; };
 		7F4459916FA1E8A2EB17D097 /* libPods-httpProxy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 708E68046B64B8D266F43A0D /* libPods-httpProxy.a */; };
 		816039171E8BE74D006304D6 /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 816039161E8BE74D006304D6 /* Tunnel.m */; };
+		8160391A1E8CA2EA006304D6 /* GCDSOCKS5LocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816039191E8CA2EA006304D6 /* GCDSOCKS5LocalServer.m */; };
+		8160391D1E8CA3AF006304D6 /* SOCKS5LocalSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160391C1E8CA3AF006304D6 /* SOCKS5LocalSocket.m */; };
+		817B6D741E8D30FE0055123B /* PacketTunnelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 817B6D731E8D30FE0055123B /* PacketTunnelProvider.m */; };
+		817B6D781E8D30FE0055123B /* PacketTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 817B6D6E1E8D30FE0055123B /* PacketTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		817B6D7F1E8D34DD0055123B /* SocketProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 816039141E8BE74D006304D6 /* SocketProtocol.h */; };
+		817B6D801E8D34DD0055123B /* Tunnel.h in Sources */ = {isa = PBXBuildFile; fileRef = 816039151E8BE74D006304D6 /* Tunnel.h */; };
+		817B6D811E8D34DD0055123B /* Tunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = 816039161E8BE74D006304D6 /* Tunnel.m */; };
+		817B6D821E8D34DD0055123B /* ConnectSession.h in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD25C1E88F5FB003DF7AC /* ConnectSession.h */; };
+		817B6D831E8D34DD0055123B /* ConnectSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD25D1E88F5FB003DF7AC /* ConnectSession.m */; };
+		817B6D841E8D34DD0055123B /* HTTPHeader.h in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD25E1E88F5FB003DF7AC /* HTTPHeader.h */; };
+		817B6D851E8D34DD0055123B /* HTTPHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD25F1E88F5FB003DF7AC /* HTTPHeader.m */; };
+		817B6D861E8D34DD0055123B /* HTTPStreamScanner.h in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2601E88F5FB003DF7AC /* HTTPStreamScanner.h */; };
+		817B6D871E8D34DD0055123B /* HTTPStreamScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2611E88F5FB003DF7AC /* HTTPStreamScanner.m */; };
+		817B6D881E8D34DD0055123B /* Utils.h in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2621E88F5FB003DF7AC /* Utils.h */; };
+		817B6D891E8D34DD0055123B /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2631E88F5FB003DF7AC /* Utils.m */; };
+		817B6D8A1E8D34DD0055123B /* RawTCPSocketProtocol.h in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2191E83BCC6003DF7AC /* RawTCPSocketProtocol.h */; };
+		817B6D8B1E8D34DD0055123B /* GCDTCPSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2161E83BCB0003DF7AC /* GCDTCPSocket.h */; };
+		817B6D8C1E8D34DD0055123B /* GCDTCPSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAD2171E83BCB0003DF7AC /* GCDTCPSocket.m */; };
+		817B6D8D1E8D34DD0055123B /* AdapterFactory.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F103B1E83A29C009CF1A6 /* AdapterFactory.h */; };
+		817B6D8E1E8D34DD0055123B /* AdapterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F103C1E83A29C009CF1A6 /* AdapterFactory.m */; };
+		817B6D8F1E8D34DD0055123B /* LocalServer.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE21E824DAD009CF1A6 /* LocalServer.h */; };
+		817B6D901E8D34DD0055123B /* LocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE31E824DAD009CF1A6 /* LocalServer.m */; };
+		817B6D911E8D34DD0055123B /* GCDLocalServer.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE51E824DD6009CF1A6 /* GCDLocalServer.h */; };
+		817B6D921E8D34DD0055123B /* GCDLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE61E824DD6009CF1A6 /* GCDLocalServer.m */; };
+		817B6D931E8D34DD0055123B /* GCDHTTPLocalServer.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE81E82513E009CF1A6 /* GCDHTTPLocalServer.h */; };
+		817B6D941E8D34DD0055123B /* GCDHTTPLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE91E82513E009CF1A6 /* GCDHTTPLocalServer.m */; };
+		817B6D951E8D34DD0055123B /* GCDSOCKS5LocalServer.h in Sources */ = {isa = PBXBuildFile; fileRef = 816039181E8CA2EA006304D6 /* GCDSOCKS5LocalServer.h */; };
+		817B6D961E8D34DD0055123B /* GCDSOCKS5LocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816039191E8CA2EA006304D6 /* GCDSOCKS5LocalServer.m */; };
+		817B6D971E8D34DD0055123B /* LocalSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FEF1E8252E3009CF1A6 /* LocalSocket.h */; };
+		817B6D981E8D34DD0055123B /* LocalSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF01E8252E3009CF1A6 /* LocalSocket.m */; };
+		817B6D991E8D34DD0055123B /* HttpLocalSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FED1E8252E3009CF1A6 /* HttpLocalSocket.h */; };
+		817B6D9A1E8D34DD0055123B /* HttpLocalSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FEE1E8252E3009CF1A6 /* HttpLocalSocket.m */; };
+		817B6D9B1E8D34DD0055123B /* SOCKS5LocalSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 8160391B1E8CA3AF006304D6 /* SOCKS5LocalSocket.h */; };
+		817B6D9C1E8D34DD0055123B /* SOCKS5LocalSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160391C1E8CA3AF006304D6 /* SOCKS5LocalSocket.m */; };
+		817B6D9D1E8D34DD0055123B /* DirectRemoteSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF41E825BBB009CF1A6 /* DirectRemoteSocket.h */; };
+		817B6D9E1E8D34DD0055123B /* DirectRemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF51E825BBB009CF1A6 /* DirectRemoteSocket.m */; };
+		817B6D9F1E8D34DD0055123B /* RemoteSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF61E825BBB009CF1A6 /* RemoteSocket.h */; };
+		817B6DA01E8D34DD0055123B /* RemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF71E825BBB009CF1A6 /* RemoteSocket.m */; };
 		818F0FE41E824DAD009CF1A6 /* LocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE31E824DAD009CF1A6 /* LocalServer.m */; };
 		818F0FE71E824DD6009CF1A6 /* GCDLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE61E824DD6009CF1A6 /* GCDLocalServer.m */; };
 		818F0FEA1E82513E009CF1A6 /* GCDHTTPLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE91E82513E009CF1A6 /* GCDHTTPLocalServer.m */; };
@@ -30,13 +69,49 @@
 		81F70AE91E67E5DA001A0393 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81F70AE71E67E5DA001A0393 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		817B6D761E8D30FE0055123B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81F70ACE1E67E5DA001A0393 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 817B6D6D1E8D30FE0055123B;
+			remoteInfo = PacketTunnel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		817B6D7C1E8D30FE0055123B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				817B6D781E8D30FE0055123B /* PacketTunnel.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1254368A0E13C39B387C043D /* Pods-httpProxy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpProxy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-httpProxy/Pods-httpProxy.debug.xcconfig"; sourceTree = "<group>"; };
 		377E27B458491126F4F664E8 /* Pods-httpProxy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpProxy.release.xcconfig"; path = "Pods/Target Support Files/Pods-httpProxy/Pods-httpProxy.release.xcconfig"; sourceTree = "<group>"; };
+		4F092491A2BA021D23146D65 /* Pods-PacketTunnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.release.xcconfig"; sourceTree = "<group>"; };
 		708E68046B64B8D266F43A0D /* libPods-httpProxy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-httpProxy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		816039141E8BE74D006304D6 /* SocketProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketProtocol.h; sourceTree = "<group>"; };
 		816039151E8BE74D006304D6 /* Tunnel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tunnel.h; sourceTree = "<group>"; };
 		816039161E8BE74D006304D6 /* Tunnel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tunnel.m; sourceTree = "<group>"; };
+		816039181E8CA2EA006304D6 /* GCDSOCKS5LocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDSOCKS5LocalServer.h; sourceTree = "<group>"; };
+		816039191E8CA2EA006304D6 /* GCDSOCKS5LocalServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDSOCKS5LocalServer.m; sourceTree = "<group>"; };
+		8160391B1E8CA3AF006304D6 /* SOCKS5LocalSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOCKS5LocalSocket.h; sourceTree = "<group>"; };
+		8160391C1E8CA3AF006304D6 /* SOCKS5LocalSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOCKS5LocalSocket.m; sourceTree = "<group>"; };
+		817B6D6E1E8D30FE0055123B /* PacketTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PacketTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		817B6D711E8D30FE0055123B /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
+		817B6D721E8D30FE0055123B /* PacketTunnelProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PacketTunnelProvider.h; sourceTree = "<group>"; };
+		817B6D731E8D30FE0055123B /* PacketTunnelProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PacketTunnelProvider.m; sourceTree = "<group>"; };
+		817B6D751E8D30FE0055123B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		817B6D7D1E8D32A80055123B /* PacketTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel.entitlements; sourceTree = "<group>"; };
+		817B6D7E1E8D32FE0055123B /* httpProxy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = httpProxy.entitlements; sourceTree = "<group>"; };
 		818F0FE21E824DAD009CF1A6 /* LocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalServer.h; sourceTree = "<group>"; };
 		818F0FE31E824DAD009CF1A6 /* LocalServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalServer.m; sourceTree = "<group>"; };
 		818F0FE51E824DD6009CF1A6 /* GCDLocalServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDLocalServer.h; sourceTree = "<group>"; };
@@ -75,9 +150,19 @@
 		81F70AE51E67E5DA001A0393 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81F70AE81E67E5DA001A0393 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81F70AEA1E67E5DA001A0393 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7AFF2A674D8018F192C86F5 /* Pods-PacketTunnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketTunnel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel.debug.xcconfig"; sourceTree = "<group>"; };
+		FF8DB3E6EA69A8EF2CEC4A1C /* libPods-PacketTunnel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PacketTunnel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		817B6D6B1E8D30FE0055123B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B68AC089650B8E480EFCEB1 /* libPods-PacketTunnel.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81F70AD31E67E5DA001A0393 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				708E68046B64B8D266F43A0D /* libPods-httpProxy.a */,
+				FF8DB3E6EA69A8EF2CEC4A1C /* libPods-PacketTunnel.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,8 +188,30 @@
 			children = (
 				1254368A0E13C39B387C043D /* Pods-httpProxy.debug.xcconfig */,
 				377E27B458491126F4F664E8 /* Pods-httpProxy.release.xcconfig */,
+				D7AFF2A674D8018F192C86F5 /* Pods-PacketTunnel.debug.xcconfig */,
+				4F092491A2BA021D23146D65 /* Pods-PacketTunnel.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		817B6D6F1E8D30FE0055123B /* PacketTunnel */ = {
+			isa = PBXGroup;
+			children = (
+				817B6D7D1E8D32A80055123B /* PacketTunnel.entitlements */,
+				817B6D721E8D30FE0055123B /* PacketTunnelProvider.h */,
+				817B6D731E8D30FE0055123B /* PacketTunnelProvider.m */,
+				817B6D751E8D30FE0055123B /* Info.plist */,
+				817B6D701E8D30FE0055123B /* Supporting Files */,
+			);
+			path = PacketTunnel;
+			sourceTree = "<group>";
+		};
+		817B6D701E8D30FE0055123B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				817B6D711E8D30FE0055123B /* PacketTunnel.entitlements */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		818F0FDD1E82493A009CF1A6 /* v2 */ = {
@@ -131,6 +239,8 @@
 				818F0FE61E824DD6009CF1A6 /* GCDLocalServer.m */,
 				818F0FE81E82513E009CF1A6 /* GCDHTTPLocalServer.h */,
 				818F0FE91E82513E009CF1A6 /* GCDHTTPLocalServer.m */,
+				816039181E8CA2EA006304D6 /* GCDSOCKS5LocalServer.h */,
+				816039191E8CA2EA006304D6 /* GCDSOCKS5LocalServer.m */,
 			);
 			path = LocalServer;
 			sourceTree = "<group>";
@@ -142,6 +252,8 @@
 				818F0FF01E8252E3009CF1A6 /* LocalSocket.m */,
 				818F0FED1E8252E3009CF1A6 /* HttpLocalSocket.h */,
 				818F0FEE1E8252E3009CF1A6 /* HttpLocalSocket.m */,
+				8160391B1E8CA3AF006304D6 /* SOCKS5LocalSocket.h */,
+				8160391C1E8CA3AF006304D6 /* SOCKS5LocalSocket.m */,
 			);
 			path = LocalSocket;
 			sourceTree = "<group>";
@@ -195,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				81F70AD81E67E5DA001A0393 /* httpProxy */,
+				817B6D6F1E8D30FE0055123B /* PacketTunnel */,
 				81F70AD71E67E5DA001A0393 /* Products */,
 				69DCE8352842F8A382EC8DA8 /* Pods */,
 				0569CC3816BF52AF7CA6457B /* Frameworks */,
@@ -205,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				81F70AD61E67E5DA001A0393 /* httpProxy.app */,
+				817B6D6E1E8D30FE0055123B /* PacketTunnel.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +336,7 @@
 				81F70AE51E67E5DA001A0393 /* Assets.xcassets */,
 				81F70AE71E67E5DA001A0393 /* LaunchScreen.storyboard */,
 				81F70AEA1E67E5DA001A0393 /* Info.plist */,
+				817B6D7E1E8D32FE0055123B /* httpProxy.entitlements */,
 				81F70AD91E67E5DA001A0393 /* Supporting Files */,
 			);
 			path = httpProxy;
@@ -238,6 +353,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		817B6D6D1E8D30FE0055123B /* PacketTunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 817B6D7B1E8D30FE0055123B /* Build configuration list for PBXNativeTarget "PacketTunnel" */;
+			buildPhases = (
+				6C1C315C112427E230A5F56B /* [CP] Check Pods Manifest.lock */,
+				817B6D6A1E8D30FE0055123B /* Sources */,
+				817B6D6B1E8D30FE0055123B /* Frameworks */,
+				817B6D6C1E8D30FE0055123B /* Resources */,
+				764771D6888C8D18F7265ACF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PacketTunnel;
+			productName = PacketTunnel;
+			productReference = 817B6D6E1E8D30FE0055123B /* PacketTunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		81F70AD51E67E5DA001A0393 /* httpProxy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81F70AED1E67E5DA001A0393 /* Build configuration list for PBXNativeTarget "httpProxy" */;
@@ -248,10 +382,12 @@
 				81F70AD41E67E5DA001A0393 /* Resources */,
 				A7FF38626D8197106A16D92B /* [CP] Embed Pods Frameworks */,
 				AC7EE1BDBC3610343E0F3210 /* [CP] Copy Pods Resources */,
+				817B6D7C1E8D30FE0055123B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				817B6D771E8D30FE0055123B /* PBXTargetDependency */,
 			);
 			name = httpProxy;
 			productName = httpProxy;
@@ -267,6 +403,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = FinalFantasy;
 				TargetAttributes = {
+					817B6D6D1E8D30FE0055123B = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = MEU26PKGC2;
+						ProvisioningStyle = Automatic;
+					};
 					81F70AD51E67E5DA001A0393 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = MEU26PKGC2;
@@ -288,11 +429,19 @@
 			projectRoot = "";
 			targets = (
 				81F70AD51E67E5DA001A0393 /* httpProxy */,
+				817B6D6D1E8D30FE0055123B /* PacketTunnel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		817B6D6C1E8D30FE0055123B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81F70AD41E67E5DA001A0393 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -319,6 +468,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6C1C315C112427E230A5F56B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		764771D6888C8D18F7265ACF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PacketTunnel/Pods-PacketTunnel-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A7FF38626D8197106A16D92B /* [CP] Embed Pods Frameworks */ = {
@@ -354,10 +533,53 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		817B6D6A1E8D30FE0055123B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				817B6D7F1E8D34DD0055123B /* SocketProtocol.h in Sources */,
+				817B6D801E8D34DD0055123B /* Tunnel.h in Sources */,
+				817B6D811E8D34DD0055123B /* Tunnel.m in Sources */,
+				817B6D821E8D34DD0055123B /* ConnectSession.h in Sources */,
+				817B6D831E8D34DD0055123B /* ConnectSession.m in Sources */,
+				817B6D841E8D34DD0055123B /* HTTPHeader.h in Sources */,
+				817B6D851E8D34DD0055123B /* HTTPHeader.m in Sources */,
+				817B6D861E8D34DD0055123B /* HTTPStreamScanner.h in Sources */,
+				817B6D871E8D34DD0055123B /* HTTPStreamScanner.m in Sources */,
+				817B6D881E8D34DD0055123B /* Utils.h in Sources */,
+				817B6D891E8D34DD0055123B /* Utils.m in Sources */,
+				817B6D8A1E8D34DD0055123B /* RawTCPSocketProtocol.h in Sources */,
+				817B6D8B1E8D34DD0055123B /* GCDTCPSocket.h in Sources */,
+				817B6D8C1E8D34DD0055123B /* GCDTCPSocket.m in Sources */,
+				817B6D8D1E8D34DD0055123B /* AdapterFactory.h in Sources */,
+				817B6D8E1E8D34DD0055123B /* AdapterFactory.m in Sources */,
+				817B6D8F1E8D34DD0055123B /* LocalServer.h in Sources */,
+				817B6D901E8D34DD0055123B /* LocalServer.m in Sources */,
+				817B6D911E8D34DD0055123B /* GCDLocalServer.h in Sources */,
+				817B6D921E8D34DD0055123B /* GCDLocalServer.m in Sources */,
+				817B6D931E8D34DD0055123B /* GCDHTTPLocalServer.h in Sources */,
+				817B6D941E8D34DD0055123B /* GCDHTTPLocalServer.m in Sources */,
+				817B6D951E8D34DD0055123B /* GCDSOCKS5LocalServer.h in Sources */,
+				817B6D961E8D34DD0055123B /* GCDSOCKS5LocalServer.m in Sources */,
+				817B6D971E8D34DD0055123B /* LocalSocket.h in Sources */,
+				817B6D981E8D34DD0055123B /* LocalSocket.m in Sources */,
+				817B6D991E8D34DD0055123B /* HttpLocalSocket.h in Sources */,
+				817B6D9A1E8D34DD0055123B /* HttpLocalSocket.m in Sources */,
+				817B6D9B1E8D34DD0055123B /* SOCKS5LocalSocket.h in Sources */,
+				817B6D9C1E8D34DD0055123B /* SOCKS5LocalSocket.m in Sources */,
+				817B6D9D1E8D34DD0055123B /* DirectRemoteSocket.h in Sources */,
+				817B6D9E1E8D34DD0055123B /* DirectRemoteSocket.m in Sources */,
+				817B6D9F1E8D34DD0055123B /* RemoteSocket.h in Sources */,
+				817B6DA01E8D34DD0055123B /* RemoteSocket.m in Sources */,
+				817B6D741E8D30FE0055123B /* PacketTunnelProvider.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81F70AD21E67E5DA001A0393 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8160391D1E8CA3AF006304D6 /* SOCKS5LocalSocket.m in Sources */,
 				818F0FF21E8252E3009CF1A6 /* LocalSocket.m in Sources */,
 				81BAD2641E88F5FB003DF7AC /* ConnectSession.m in Sources */,
 				81BAD2651E88F5FB003DF7AC /* HTTPHeader.m in Sources */,
@@ -365,6 +587,7 @@
 				81F70AE11E67E5DA001A0393 /* ViewController.m in Sources */,
 				818F103D1E83A29C009CF1A6 /* AdapterFactory.m in Sources */,
 				81F70ADE1E67E5DA001A0393 /* AppDelegate.m in Sources */,
+				8160391A1E8CA2EA006304D6 /* GCDSOCKS5LocalServer.m in Sources */,
 				81BAD2181E83BCB0003DF7AC /* GCDTCPSocket.m in Sources */,
 				81BAD2661E88F5FB003DF7AC /* HTTPStreamScanner.m in Sources */,
 				81BAD2671E88F5FB003DF7AC /* Utils.m in Sources */,
@@ -379,6 +602,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		817B6D771E8D30FE0055123B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 817B6D6D1E8D30FE0055123B /* PacketTunnel */;
+			targetProxy = 817B6D761E8D30FE0055123B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		81F70AE21E67E5DA001A0393 /* Main.storyboard */ = {
@@ -400,6 +631,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		817B6D791E8D30FE0055123B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7AFF2A674D8018F192C86F5 /* Pods-PacketTunnel.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
+				DEVELOPMENT_TEAM = MEU26PKGC2;
+				INFOPLIST_FILE = PacketTunnel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn.PacketTunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		817B6D7A1E8D30FE0055123B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F092491A2BA021D23146D65 /* Pods-PacketTunnel.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
+				DEVELOPMENT_TEAM = MEU26PKGC2;
+				INFOPLIST_FILE = PacketTunnel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn.PacketTunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		81F70AEB1E67E5DA001A0393 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -493,13 +756,15 @@
 			baseConfigurationReference = 1254368A0E13C39B387C043D /* Pods-httpProxy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MEU26PKGC2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/httpProxy/PrefixHeader.pch";
 				INFOPLIST_FILE = httpProxy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn.httpProxy;
+				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -508,19 +773,29 @@
 			baseConfigurationReference = 377E27B458491126F4F664E8 /* Pods-httpProxy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MEU26PKGC2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/httpProxy/PrefixHeader.pch";
 				INFOPLIST_FILE = httpProxy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn.httpProxy;
+				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		817B6D7B1E8D30FE0055123B /* Build configuration list for PBXNativeTarget "PacketTunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				817B6D791E8D30FE0055123B /* Debug */,
+				817B6D7A1E8D30FE0055123B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		81F70AD11E67E5DA001A0393 /* Build configuration list for PBXProject "httpProxy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

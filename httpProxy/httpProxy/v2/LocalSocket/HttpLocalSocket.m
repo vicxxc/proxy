@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, HTTPLocalSocketWriteStatus) {
 	HTTPLocalSocketWriteStopped
 };
 
-@interface HttpLocalSocket()<RawTCPSocketDelegate>
+@interface HttpLocalSocket()
 //@property (nonatomic, strong) GCDAsyncSocket *clientSocket;
 //@property (nonatomic, strong) GCDAsyncSocket *requestSocket;
 //@property (nonatomic, strong) NSData *toSendData;

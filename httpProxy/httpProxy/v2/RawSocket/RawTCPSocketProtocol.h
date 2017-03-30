@@ -21,6 +21,7 @@
 - (void)forceDisconnect;
 - (void)readData;
 - (void)readDataTo:(NSData *)data;
+- (void)readDataToLength:(NSInteger)length;
 - (void)writeData:(NSData *)data;
 @end
 

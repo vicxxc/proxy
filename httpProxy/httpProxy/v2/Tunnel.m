@@ -10,6 +10,8 @@
 #import "DirectRemoteSocket.h"
 #import "AdapterFactory.h"
 
+#define MTT_WEAKSELF(weakSelf)		__weak __typeof(&*self)weakSelf = self
+
 @interface Tunnel () <socketDelegate>
 @property (nonatomic, strong) LocalSocket *localSocket;
 @property (nonatomic, strong) RemoteSocket *remoteSocket;
@@ -72,7 +74,7 @@
 - (void)didWriteData:(NSData *)data by:(id<SocketProtocol>)socket
 {
 	if([socket isKindOfClass:[LocalSocket class]]){
-		WEAKSELF(ws);
+		MTT_WEAKSELF(ws);
 		// 延迟50ms
 		dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)((50/1000.0f) * NSEC_PER_SEC));
 		

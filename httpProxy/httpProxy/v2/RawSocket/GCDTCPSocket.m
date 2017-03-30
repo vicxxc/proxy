@@ -74,6 +74,11 @@
 	[self.clientSocket readDataWithTimeout:-1 tag:0];
 }
 
+- (void)readDataToLength:(NSInteger)length
+{
+	[self.clientSocket readDataToLength:length withTimeout:-1 tag:0];
+}
+
 - (void)readDataTo:(NSData *)data
 {
 	[self.clientSocket readDataToData:data withTimeout:-1 tag:0];
