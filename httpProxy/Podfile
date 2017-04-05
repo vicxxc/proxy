@@ -2,8 +2,11 @@ target 'httpProxy' do
 	pod 'CocoaAsyncSocket'
 	pod 'JKCategories'
 	pod 'Masonry'
+	pod 'Bugly'
+	pod 'CocoaLumberjack'
 end
 target 'PacketTunnel' do
 	pod 'CocoaAsyncSocket'
 	pod 'Masonry'
+	pod 'CocoaLumberjack'
 end

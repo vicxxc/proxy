@@ -48,6 +48,7 @@
 		817B6D9E1E8D34DD0055123B /* DirectRemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF51E825BBB009CF1A6 /* DirectRemoteSocket.m */; };
 		817B6D9F1E8D34DD0055123B /* RemoteSocket.h in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF61E825BBB009CF1A6 /* RemoteSocket.h */; };
 		817B6DA01E8D34DD0055123B /* RemoteSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FF71E825BBB009CF1A6 /* RemoteSocket.m */; };
+		817B6DA11E8E0C430055123B /* PrefixHeader.pch in Sources */ = {isa = PBXBuildFile; fileRef = 81F26F681E6D0CC700079AA1 /* PrefixHeader.pch */; };
 		818F0FE41E824DAD009CF1A6 /* LocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE31E824DAD009CF1A6 /* LocalServer.m */; };
 		818F0FE71E824DD6009CF1A6 /* GCDLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE61E824DD6009CF1A6 /* GCDLocalServer.m */; };
 		818F0FEA1E82513E009CF1A6 /* GCDHTTPLocalServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 818F0FE91E82513E009CF1A6 /* GCDHTTPLocalServer.m */; };
@@ -537,6 +538,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817B6DA11E8E0C430055123B /* PrefixHeader.pch in Sources */,
 				817B6D7F1E8D34DD0055123B /* SocketProtocol.h in Sources */,
 				817B6D801E8D34DD0055123B /* Tunnel.h in Sources */,
 				817B6D811E8D34DD0055123B /* Tunnel.m in Sources */,
@@ -638,8 +640,9 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
 				DEVELOPMENT_TEAM = MEU26PKGC2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/httpProxy/PrefixHeader.pch";
 				INFOPLIST_FILE = PacketTunnel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn.PacketTunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -654,8 +657,9 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = PacketTunnel/PacketTunnel.entitlements;
 				DEVELOPMENT_TEAM = MEU26PKGC2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/httpProxy/PrefixHeader.pch";
 				INFOPLIST_FILE = PacketTunnel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn.PacketTunnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -761,6 +765,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/httpProxy/PrefixHeader.pch";
 				INFOPLIST_FILE = httpProxy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -778,6 +783,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/httpProxy/PrefixHeader.pch";
 				INFOPLIST_FILE = httpProxy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = im.tt.vpn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -795,6 +801,7 @@
 				817B6D7A1E8D30FE0055123B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81F70AD11E67E5DA001A0393 /* Build configuration list for PBXProject "httpProxy" */ = {
 			isa = XCConfigurationList;

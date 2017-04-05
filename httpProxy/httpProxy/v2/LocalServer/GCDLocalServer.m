@@ -7,6 +7,7 @@
 //
 
 #import "GCDLocalServer.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @interface GCDLocalServer ()<GCDAsyncSocketDelegate>
 @property (nonatomic, strong) GCDAsyncSocket *localSocket;
@@ -19,6 +20,7 @@
 	self.localSocket.delegate = self;
 	NSError *error;
 	[self.localSocket acceptOnInterface:self.ipAddress port:self.port error:&error];
+	DDLogVerbose(@"开始监听%@:%hu的数据",self.ipAddress,self.port);
 }
 
 - (void)stop{

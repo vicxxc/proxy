@@ -9,9 +9,12 @@
 #import "ViewController.h"
 #import <NetworkExtension/NetworkExtension.h>
 #import <Masonry.h>
+#import "GCDHTTPLocalServer.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) UIButton *connectButton;
+@property (nonatomic, strong) UIButton *removeButton;
+@property (nonatomic, strong) GCDHTTPLocalServer *httpLocalServer;
 @end
 
 @implementation ViewController
@@ -25,46 +28,71 @@
 		make.center.equalTo(self.view);
 	}];
 	[self.connectButton addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
+	
+	[self.view addSubview:self.removeButton];
+	[self.removeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.height.mas_equalTo(40);
+		make.width.mas_equalTo(200);
+		make.centerX.equalTo(self.view);
+		make.centerY.equalTo(self.view).offset(50);
+	}];
+	[self.removeButton addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
+	
+	
+//	self.httpLocalServer = [[GCDHTTPLocalServer alloc] initWithIpAddress:@"127.0.0.1" port:6543];
+//	[self.httpLocalServer start];
+}
+
+- (void)remove{
+	[NETunnelProviderManager loadAllFromPreferencesWithCompletionHandler:^(NSArray<NETunnelProviderManager *> * _Nullable managers, NSError * _Nullable error) {
+		if(!error){
+			if([managers count] > 0){
+				NETunnelProviderManager *manager = managers[0];
+				[manager removeFromPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+				}];
+			}
+		}
+	}];
 }
 
 - (void)connect{
 	WEAKSELF(ws);
-		[NETunnelProviderManager loadAllFromPreferencesWithCompletionHandler:^(NSArray<NETunnelProviderManager *> * _Nullable managers, NSError * _Nullable error) {
-			if(!error){
-				if([managers count] > 0){
-					NETunnelProviderManager *manager = managers[0];
-					if (manager.connection.status != NEVPNStatusDisconnected && manager.connection.status != NEVPNStatusInvalid) {
-						[manager.connection stopVPNTunnel];
-					}else{
-						NSError *startVPNError;
-						[manager.connection startVPNTunnelAndReturnError:&startVPNError];
-						if(startVPNError){
-							[ws.connectButton setTitle:@"连接失败" forState:UIControlStateNormal];
-						}else{
-							[ws.connectButton setTitle:@"连接成功" forState:UIControlStateNormal];
-						}
-						[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeVpnStatus) name:NEVPNStatusDidChangeNotification object:nil];
-					}
+	[NETunnelProviderManager loadAllFromPreferencesWithCompletionHandler:^(NSArray<NETunnelProviderManager *> * _Nullable managers, NSError * _Nullable error) {
+		if(!error){
+			if([managers count] > 0){
+				NETunnelProviderManager *manager = managers[0];
+				if (manager.connection.status != NEVPNStatusDisconnected && manager.connection.status != NEVPNStatusInvalid) {
+					[manager.connection stopVPNTunnel];
 				}else{
-					NETunnelProviderManager *manager = [NETunnelProviderManager new];
-					NETunnelProviderProtocol *configuration = [NETunnelProviderProtocol new];
-					configuration.serverAddress = @"Wave VPN";
-					manager.protocolConfiguration = configuration;
-					manager.localizedDescription = @"Wave";
-					manager.enabled = YES;
-					manager.onDemandEnabled = YES;
-					[manager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
-						if(error){
-							[ws.connectButton setTitle:@"保存失败" forState:UIControlStateNormal];
-						}else{
-							[ws startVpn];
-						}
-					}];
+					NSError *startVPNError;
+					[manager.connection startVPNTunnelAndReturnError:&startVPNError];
+					if(startVPNError){
+						[ws.connectButton setTitle:@"连接失败" forState:UIControlStateNormal];
+					}else{
+						[ws.connectButton setTitle:@"连接成功" forState:UIControlStateNormal];
+					}
+					[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeVpnStatus) name:NEVPNStatusDidChangeNotification object:nil];
 				}
 			}else{
-				[self.connectButton setTitle:@"连接失败" forState:UIControlStateNormal];
+				NETunnelProviderManager *manager = [NETunnelProviderManager new];
+				NETunnelProviderProtocol *configuration = [NETunnelProviderProtocol new];
+				configuration.serverAddress = @"Wave VPN";
+				manager.protocolConfiguration = configuration;
+				manager.localizedDescription = @"Wave";
+				manager.enabled = YES;
+				manager.onDemandEnabled = YES;
+				[manager saveToPreferencesWithCompletionHandler:^(NSError * _Nullable error) {
+					if(error){
+						[ws.connectButton setTitle:@"保存失败" forState:UIControlStateNormal];
+					}else{
+						[ws startVpn];
+					}
+				}];
 			}
-		}];
+		}else{
+			[self.connectButton setTitle:@"连接失败" forState:UIControlStateNormal];
+		}
+	}];
 }
 
 - (void)didChangeVpnStatus
@@ -124,6 +152,18 @@
 		[_connectButton setBackgroundColor:TTBLUE];
 	}
 	return _connectButton;
+}
+
+- (UIButton *)removeButton{
+	if (!_removeButton) {
+		_removeButton = [UIButton new];
+		[_removeButton setTitle:@"remove" forState:UIControlStateNormal];
+		[_removeButton setClipsToBounds:YES];
+		[_removeButton.layer setCornerRadius:5];
+		[_removeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[_removeButton setBackgroundColor:TTBLUE];
+	}
+	return _removeButton;
 }
 
 @end

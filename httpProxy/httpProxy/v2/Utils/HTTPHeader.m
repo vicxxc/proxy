@@ -55,7 +55,8 @@ typedef NS_ENUM(NSUInteger, HTTPHeaderError) {
 				return nil;
 			}
 			
-			[self.headers addObject:@{@"key":[tmp_headers[0] jk_trimmingWhitespace],@"value":[tmp_headers[1] jk_trimmingWhitespace]}];
+			[self.headers addObject:@{@"key":tmp_headers[0],@"value":tmp_headers[1]}];
+//			[self.headers addObject:@{@"key":[tmp_headers[0] jk_trimmingWhitespace],@"value":[tmp_headers[1] jk_trimmingWhitespace]}];
 		}
 		
 		if([[self.method uppercaseString] isEqualToString:@"CONNECT"]){
@@ -91,8 +92,10 @@ typedef NS_ENUM(NSUInteger, HTTPHeaderError) {
 - (void)removeProxyHeader
 {
 	NSArray *toRemoveHeader = @[@"Proxy-Authenticate", @"Proxy-Authorization", @"Proxy-Connection"];
+	NSArray *headerArray = [self.headers copy];
+//	#warning 这里有一个Collection <__NSArrayM: 0x600000241bf0> was mutated while being enumerated 报错
 	for (NSString *header in toRemoveHeader) {
-		for(id obj in self.headers){
+		for(NSDictionary *obj in headerArray){
 			if([[obj[@"key"] lowercaseString] isEqualToString:[header lowercaseString]]){
 				[self.headers removeObject:obj];
 			}
@@ -108,6 +111,7 @@ typedef NS_ENUM(NSUInteger, HTTPHeaderError) {
 		[header appendString:[NSString stringWithFormat:@"%@: %@\r\n",obj[@"key"],obj[@"value"]]];
 	}
 	[header appendString:@"\r\n"];
+	NSLog(@"http header=>%@",header);
 	return [header dataUsingEncoding:NSUTF8StringEncoding];
 }
 

@@ -8,31 +8,37 @@
 
 #import "PacketTunnelProvider.h"
 #import "GCDHTTPLocalServer.h"
+//#import <CocoaLumberjack/CocoaLumberjack.h>
+
+//static const int ddLogLevel = DDLogLevelVerbose;
 
 @interface PacketTunnelProvider ()
 @property NWTCPConnection *connection;
 @property (strong) void (^pendingStartCompletion)(NSError *);
 @property (nonatomic, strong) GCDHTTPLocalServer *httpLocalServer;
+@property (nonatomic, assign) BOOL enablePacketProcess;
 @end
 
 @implementation PacketTunnelProvider
 
 - (void)startTunnelWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSError *))completionHandler
 {
-	self.httpLocalServer = [[GCDHTTPLocalServer alloc] initWithIpAddress:@"127.0.0.1" port:6543];
-	[self.httpLocalServer start];
+	self.enablePacketProcess = YES;
+	[self setLog];
+	DDLogVerbose(@"startTunnel");
 	
 	NSArray *addresses = @[@"10.0.1.100"];
 	NSArray *subnetMasks = @[@"255.255.255.0"];
-	NSArray<NSString *> *dnsServers = @[@"8.8.8.8", @"8.8.4.4"];
 	
 	NEPacketTunnelNetworkSettings *settings = [[NEPacketTunnelNetworkSettings alloc] initWithTunnelRemoteAddress:@"192.168.1.1"];
 	
 	settings.IPv4Settings = [[NEIPv4Settings alloc] initWithAddresses:addresses subnetMasks:subnetMasks];
-//	NEIPv4Route *defaultRoute = [NEIPv4Route defaultRoute];
-//	NEIPv4Route *localRoute = [[NEIPv4Route alloc] initWithDestinationAddress:@"10.0.0.0" subnetMask:@"255.255.255.0"];
-//	settings.IPv4Settings.includedRoutes = @[defaultRoute, localRoute];
-//	settings.IPv4Settings.excludedRoutes = @[];
+	if(self.enablePacketProcess){
+		NEIPv4Route *defaultRoute = [NEIPv4Route defaultRoute];
+		NEIPv4Route *localRoute = [[NEIPv4Route alloc] initWithDestinationAddress:@"10.0.0.0" subnetMask:@"255.255.255.0"];
+		settings.IPv4Settings.includedRoutes = @[defaultRoute, localRoute];
+		settings.IPv4Settings.excludedRoutes = @[];
+	}
 	settings.MTU = [NSNumber numberWithInt:1500];
 	
 	NEProxySettings* proxySettings = [[NEProxySettings alloc] init];
@@ -46,18 +52,48 @@
 	proxySettings.excludeSimpleHostnames = YES;
 	settings.proxySettings = proxySettings;
 	
-	NEDNSSettings *dnsSettings = [[NEDNSSettings alloc] initWithServers:dnsServers];
-	dnsSettings.matchDomains = @[@""];
-	settings.DNSSettings = dnsSettings;
+	if (self.enablePacketProcess) {
+		NSArray<NSString *> *dnsServers = @[@"8.8.8.8", @"8.8.4.4"];
+		NEDNSSettings *dnsSettings = [[NEDNSSettings alloc] initWithServers:dnsServers];
+		dnsSettings.matchDomains = @[@""];
+		settings.DNSSettings = dnsSettings;
+	}
+	
+	
+	WEAKSELF(ws);
 	
 	[self setTunnelNetworkSettings:settings completionHandler:^(NSError * _Nullable error) {
-		NSLog(@"setTunnelNetworkSettings error: %@", error);
+		DDLogVerbose(@"setTunnelNetworkSettings error: %@", error);
+		
+		ws.httpLocalServer = [[GCDHTTPLocalServer alloc] initWithIpAddress:@"127.0.0.1" port:6543];
+		[ws.httpLocalServer start];
+		
+		if (ws.enablePacketProcess) {
+			[ws dealPacketFlow];
+		}
+		
 		completionHandler(error);
 	}];
-//	NWTCPConnection *newConnection = [self createTCPConnectionToEndpoint:[NWHostEndpoint endpointWithHostname:self.protocol.serverAddress port:@"9050"] enableTLS:NO TLSParameters:nil delegate:nil];
-//	[newConnection addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionInitial context:nil];
-//	self.connection = newConnection;
-//	self.pendingStartCompletion = completionHandler;
+}
+
+- (void)dealPacketFlow
+{
+	WEAKSELF(ws);
+	[self.packetFlow readPacketsWithCompletionHandler:^(NSArray<NSData *> * _Nonnull packets, NSArray<NSNumber *> * _Nonnull protocols) {
+		DDLogVerbose(@"packets=>%@,protocols=>%@",packets,protocols);
+		[ws dealPacketFlow];
+	}];
+}
+
+- (void)setLog
+{
+	[DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
+	[DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
+	
+	DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
+	fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+	fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+	[DDLog addLogger:fileLogger];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

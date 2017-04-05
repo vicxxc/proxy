@@ -14,6 +14,7 @@
 - (void)handleNewGCDSocket:(GCDTCPSocket *)socket
 {
 	HttpLocalSocket *httpLocalSocket = [[HttpLocalSocket alloc] initWithSocket:socket];
+	DDLogVerbose(@"handleNewGCDHttpSocket");
 	[self didAcceptNewSocket:httpLocalSocket];
 }
 
