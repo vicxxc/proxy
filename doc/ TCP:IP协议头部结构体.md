@@ -1,6 +1,10 @@
 # TCP/IP协议头部结构体（网摘小结）
+http://blog.csdn.net/ithomer/article/details/5662383
 https://tools.ietf.org/html/rfc790
-<4 5 00 003c 4388 0000 ff 11 5cb5 0a000164 08080808 e0530035 00287b0b fee60100 00010000 00000000 03777777 0669636c 6f756403 636f6d00 00010001>
+<4 5 00 003c 4388 0000 ff 11 5cb5 0a000164 08080808 
+IP头部
+e0 53 00 35 00 28 7b 0b fee60100 00010000 00000000 03777777 0669636c 6f756403 636f6d00 00010001>
+UDP头部
 0                   1                   2                   3
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -24,5 +28,17 @@ https://tools.ietf.org/html/rfc790
 - 0000 Flags和Fragment
 - ff 是TTL
 - 11 协议类型 0x06=>TCP协议 0x11=>UDP协议 0x04=>IP over IP 0x29=>IPv6 protocol  https://en.wikipedia.org/wiki/List_of_IP_protocol_numbers
+- 5cb5 头校验和
+- 0a000164 源地址10.0.1.100
+- 08080808 目标地址8.8.8.8
 
+unsigned short src_port; //远端口号
+unsigned short dst_port; //目的端口号
+unsigned short uhl;      //udp头部长度
+unsigned short chk_sum;  //16位udp检验和
 
+- e0 53 源端口57427 
+- 00 35 目的端口53
+- 00 28 长度40
+- 7b 0b 校验和
+- fee60100 00010000 00000000 03777777 0669636c 6f756403 636f6d00 00010001
